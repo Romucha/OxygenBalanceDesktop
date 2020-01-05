@@ -88,6 +88,7 @@ namespace OxygenBalanceDesktop
         private void DoseChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             ThirdDoseShow.Text= $"{ThirdSlider.Value:0.00}";
+            ThirdDose = ThirdSlider.Value;
         }
 
         //make only digits and "." inputable
@@ -108,7 +109,25 @@ namespace OxygenBalanceDesktop
                 }
                 //make slider correlate with textbox
                 ThirdSlider.Value = double.Parse(ThirdDoseShow.Text);
+                ThirdDose = double.Parse(ThirdDoseShow.Text);
             }
+        }
+
+        //show results of calculation
+        private void CalculateBalance(object sender, EventArgs e)
+        {
+            //balance of components
+            var b1 = FuelCur.Balance;
+            var b2 = OxidizerCur.Balance;
+            var b3 = ThirdCur.Balance;
+            //dose of third component
+            var d = ThirdDose;
+
+            //dose of first component
+            var x = ((100 - d) * b2 + d * b3) / (b2 - b1);
+            //dose of second component
+            var y = 100 - d - x;
+            MessageBox.Show($"{x:0.00}% of {FuelCur.Name} + {y:0.00}% of {OxidizerCur.Name} + {d:0.00}% of {ThirdCur.Name} = 0.00%");
         }
     }
 }
