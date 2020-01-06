@@ -53,6 +53,13 @@ namespace OxygenBalanceDesktop
             //show the chosen option
             FuelShow.Content = buf.ToString();
 
+            //if there same selected items third component get nullified
+            if (Fuel.SelectedItem == ThirdOne.SelectedItem)
+            {
+                ThirdOne.SelectedIndex = -1;
+                ThirdShow.Content = null;
+                ThirdCur = null;
+            }
         }
 
         //selection of 2nd element
@@ -64,15 +71,27 @@ namespace OxygenBalanceDesktop
 
             //show the chosen option
             OxidizerShow.Content = buf.ToString();
+
+            //if there same selected items third component get nullified
+            if (Oxidizer.SelectedItem == ThirdOne.SelectedItem)
+            {
+                ThirdOne.SelectedIndex = -1;
+                ThirdShow.Content = null;
+                ThirdCur = null;
+            }
         }
 
         //selection of 3rd element
         private void ThirdSelected(object sender, RoutedEventArgs e)
         {
-            Explosives.TryGetValue(ThirdOne.SelectedItem.ToString(), out ChemicalSubstance buf);
-            ThirdShow.Content = ((buf.Balance > 0.0) ? "Phlegmatizer" : "Sensitizer") + ":\n" + buf.ToString();
-
-            ThirdCur = buf;
+            if (ThirdOne.SelectedItem != null)
+            {
+                Explosives.TryGetValue(ThirdOne.SelectedItem.ToString(), out ChemicalSubstance buf);
+                ThirdCur = buf;
+                //show chosen option
+                ThirdShow.Content = ((buf.Balance > 0.0) ? "Phlegmatizer" : "Sensitizer") + ":\n" + buf.ToString();
+            }
+            
         }
 
         //WIP
