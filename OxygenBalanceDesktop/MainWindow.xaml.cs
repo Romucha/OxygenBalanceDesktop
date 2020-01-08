@@ -39,7 +39,7 @@ namespace OxygenBalanceDesktop
             Fuel.ItemsSource = FuelList.Select(c => c.Name);
             var OxidizerList = new ObservableCollection<ChemicalSubstance>(Explosives.ChemicalSubstances.Where(c => c.Balance > 0.0));
             Oxidizer.ItemsSource = OxidizerList.Select(c => c.Name);
-            var ThirdList = new ObservableCollection<ChemicalSubstance>(Explosives.ChemicalSubstances.Where(c => c != FuelCur | c != OxidizerCur));
+            var ThirdList = new ObservableCollection<ChemicalSubstance>(Explosives.ChemicalSubstances);
             ThirdOne.ItemsSource = ThirdList.Select(c => c.Name);
         }
 
@@ -53,12 +53,13 @@ namespace OxygenBalanceDesktop
             //show the chosen option
             FuelShow.Content = buf.ToString();
 
-            //if there same selected items third component get nullified
+            //if there same selected items third component and list get nullified            
             if (Fuel.SelectedItem == ThirdOne.SelectedItem)
             {
                 ThirdOne.SelectedIndex = -1;
                 ThirdShow.Content = null;
                 ThirdCur = null;
+                ThirdOne.ItemsSource = new ObservableCollection<string>(Explosives.ChemicalSubstances.Select(c => c.Name).Where(c => c != FuelCur.Name).Where(c => c != OxidizerCur.Name));
             }
         }
 
@@ -72,13 +73,15 @@ namespace OxygenBalanceDesktop
             //show the chosen option
             OxidizerShow.Content = buf.ToString();
 
-            //if there same selected items third component get nullified
+            //if there same selected items third component and list get nullified
             if (Oxidizer.SelectedItem == ThirdOne.SelectedItem)
             {
                 ThirdOne.SelectedIndex = -1;
                 ThirdShow.Content = null;
                 ThirdCur = null;
+                ThirdOne.ItemsSource = new ObservableCollection<string>(Explosives.ChemicalSubstances.Select(c => c.Name).Where(c => c != OxidizerCur.Name).Where(c => c != FuelCur.Name));
             }
+           
         }
 
         //selection of 3rd element
@@ -91,16 +94,6 @@ namespace OxygenBalanceDesktop
                 //show chosen option
                 ThirdShow.Content = ((buf.Balance > 0.0) ? "Phlegmatizer" : "Sensitizer") + ":\n" + buf.ToString();
             }
-            
-        }
-
-        //WIP
-        private void ThirdOpened(object sender, EventArgs e)
-        {
-            //clear all in third component list
-            ThirdOne.ItemsSource = null;
-            //add all explosives but the ones that were selected in first two lists
-            ThirdOne.ItemsSource = new ObservableCollection<ChemicalSubstance>(Explosives.ChemicalSubstances.Where(c => c != FuelCur | c != OxidizerCur)).Select(c => c.Name);
         }
 
         //slider changes are shown in textbox
@@ -147,6 +140,11 @@ namespace OxygenBalanceDesktop
             //dose of second component
             var y = 100 - d - x;
             MessageBox.Show($"{x:0.00}% of {FuelCur.Name} + {y:0.00}% of {OxidizerCur.Name} + {d:0.00}% of {ThirdCur.Name} = 0.00%");
+        }
+
+        private void ThirdListChanged(object sender, DragEventArgs e)
+        {
+            ThirdOne.ItemsSource = new ObservableCollection<string>(Explosives.ChemicalSubstances.Select(c => c.Name).Where(c => c != (string)Fuel.SelectedItem | c != (string)Oxidizer.SelectedItem));
         }
     }
 }
