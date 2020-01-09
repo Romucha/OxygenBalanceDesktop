@@ -32,20 +32,50 @@ namespace OxygenBalanceDesktop
         //dose of third substance
         private double ThirdDose { get; set; }
 
+        //fuel list
+        private ObservableCollection<string> FuelList { get; set; }
+
+        //oxidizer list
+        private ObservableCollection<string> OxidizerList { get; set; }
+
+        //third component list
+        ObservableCollection<string> ThirdList { get; set; }
+
         public MainWindow()
         {
             InitializeComponent();
-            var FuelList = new ObservableCollection<ChemicalSubstance>(Explosives.ChemicalSubstances.Where(c => c.Balance < 0.0));
-            Fuel.ItemsSource = FuelList.Select(c => c.Name);
-            var OxidizerList = new ObservableCollection<ChemicalSubstance>(Explosives.ChemicalSubstances.Where(c => c.Balance > 0.0));
-            Oxidizer.ItemsSource = OxidizerList.Select(c => c.Name);
-            var ThirdList = new ObservableCollection<ChemicalSubstance>(Explosives.ChemicalSubstances);
-            ThirdOne.ItemsSource = ThirdList.Select(c => c.Name);
+            FuelList = new ObservableCollection<string>(Explosives.ChemicalSubstances.Where(c => c.Balance < 0.0).Select(c => c.Name));
+            Fuel.ItemsSource = FuelList;
+            OxidizerList = new ObservableCollection<string>(Explosives.ChemicalSubstances.Where(c => c.Balance > 0.0).Select(c => c.Name));
+            Oxidizer.ItemsSource = OxidizerList;
+            ThirdList = new ObservableCollection<string>(Explosives.ChemicalSubstances.Select(c => c.Name));
+            ThirdOne.ItemsSource = ThirdList;
         }
 
         //selection of 1st element
         private void FuelSelected(object sender, RoutedEventArgs e)
-        {            
+        {    
+            //if there same selected items third component and list get nullified            
+            if (Fuel.SelectedItem == ThirdOne.SelectedItem)
+            {
+                ThirdOne.SelectedIndex = -1;
+                ThirdShow.Content = null;
+                ThirdCur = null;
+            }
+
+            //check if FuelCur is not null
+            if (FuelCur != null)
+            {
+                //then check if third list doesn't contain FuelCur
+                if (!ThirdList.Contains(FuelCur.Name))
+                {
+                    //add to third list
+                    ThirdList.Add(FuelCur.Name);
+                    //WIP
+                    //need to sort
+                }
+            }
+
             //try to get substance from list and store it in variable
             Explosives.TryGetValue(Fuel.SelectedItem.ToString(), out ChemicalSubstance buf);
             FuelCur = buf;
@@ -53,19 +83,35 @@ namespace OxygenBalanceDesktop
             //show the chosen option
             FuelShow.Content = buf.ToString();
 
-            //if there same selected items third component and list get nullified            
-            if (Fuel.SelectedItem == ThirdOne.SelectedItem)
-            {
-                ThirdOne.SelectedIndex = -1;
-                ThirdShow.Content = null;
-                ThirdCur = null;
-                ThirdOne.ItemsSource = new ObservableCollection<string>(Explosives.ChemicalSubstances.Select(c => c.Name).Where(c => c != FuelCur.Name).Where(c => c != OxidizerCur.Name));
-            }
+            //remove new FuelCur from third list
+            ThirdList.Remove(FuelCur.Name);
+            //ThirdList = new ObservableCollection<string>(ThirdList.OrderBy(i => i));
         }
 
         //selection of 2nd element
         private void OxidizerSelected(object sender, RoutedEventArgs e)
-        {            
+        {
+            //if there same selected items third component and list get nullified            
+            if (Oxidizer.SelectedItem == ThirdOne.SelectedItem)
+            {
+                ThirdOne.SelectedIndex = -1;
+                ThirdShow.Content = null;
+                ThirdCur = null;
+            }
+
+            //check if OxidizerCur is not null
+            if (OxidizerCur != null)
+            {
+                //then check if third list doesn't contain OxidizerCur
+                if (!ThirdList.Contains(OxidizerCur.Name))
+                {
+                    //add to third list
+                    ThirdList.Add(OxidizerCur.Name);
+                    //WIP
+                    //need to sort
+                }
+            }
+
             //try to get substance from list and store it in variable
             Explosives.TryGetValue(Oxidizer.SelectedItem.ToString(), out ChemicalSubstance buf);
             OxidizerCur = buf;
@@ -73,15 +119,9 @@ namespace OxygenBalanceDesktop
             //show the chosen option
             OxidizerShow.Content = buf.ToString();
 
-            //if there same selected items third component and list get nullified
-            if (Oxidizer.SelectedItem == ThirdOne.SelectedItem)
-            {
-                ThirdOne.SelectedIndex = -1;
-                ThirdShow.Content = null;
-                ThirdCur = null;
-                ThirdOne.ItemsSource = new ObservableCollection<string>(Explosives.ChemicalSubstances.Select(c => c.Name).Where(c => c != OxidizerCur.Name).Where(c => c != FuelCur.Name));
-            }
-           
+            //remove new OxidizerCur from third list
+            ThirdList.Remove(OxidizerCur.Name);
+            //ThirdList = new ObservableCollection<string>(ThirdList.OrderBy(i => i));
         }
 
         //selection of 3rd element
