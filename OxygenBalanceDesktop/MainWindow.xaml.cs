@@ -39,7 +39,9 @@ namespace OxygenBalanceDesktop
         private ObservableCollection<string> OxidizerList { get; set; }
 
         //third component list
-        ObservableCollection<string> ThirdList { get; set; }
+        //ObservableCollection<string> ThirdList { get; set; }
+        //was made a list to get proper sort methods
+        List<string> ThirdList { get; set; }
 
         public MainWindow()
         {
@@ -48,7 +50,8 @@ namespace OxygenBalanceDesktop
             Fuel.ItemsSource = FuelList;
             OxidizerList = new ObservableCollection<string>(Explosives.ChemicalSubstances.Where(c => c.Balance > 0.0).Select(c => c.Name));
             Oxidizer.ItemsSource = OxidizerList;
-            ThirdList = new ObservableCollection<string>(Explosives.ChemicalSubstances.Select(c => c.Name));
+            //ThirdList = new ObservableCollection<string>(Explosives.ChemicalSubstances.Select(c => c.Name));
+            ThirdList = new List<string>(Explosives.ChemicalSubstances.Select(c => c.Name));
             ThirdOne.ItemsSource = ThirdList;
         }
 
@@ -70,9 +73,7 @@ namespace OxygenBalanceDesktop
                 if (!ThirdList.Contains(FuelCur.Name))
                 {
                     //add to third list
-                    ThirdList.Add(FuelCur.Name);
-                    //WIP
-                    //need to sort
+                    ThirdList.Add(FuelCur.Name);                    
                 }
             }
 
@@ -85,7 +86,8 @@ namespace OxygenBalanceDesktop
 
             //remove new FuelCur from third list
             ThirdList.Remove(FuelCur.Name);
-            //ThirdList = new ObservableCollection<string>(ThirdList.OrderBy(i => i));
+            //sort third list to get proper view
+            ThirdList.Sort();
         }
 
         //selection of 2nd element
@@ -107,8 +109,6 @@ namespace OxygenBalanceDesktop
                 {
                     //add to third list
                     ThirdList.Add(OxidizerCur.Name);
-                    //WIP
-                    //need to sort
                 }
             }
 
@@ -121,7 +121,8 @@ namespace OxygenBalanceDesktop
 
             //remove new OxidizerCur from third list
             ThirdList.Remove(OxidizerCur.Name);
-            //ThirdList = new ObservableCollection<string>(ThirdList.OrderBy(i => i));
+            //sort third list to get proper view
+            ThirdList.Sort();
         }
 
         //selection of 3rd element
@@ -180,11 +181,6 @@ namespace OxygenBalanceDesktop
             //dose of second component
             var y = 100 - d - x;
             MessageBox.Show($"{x:0.00}% of {FuelCur.Name} + {y:0.00}% of {OxidizerCur.Name} + {d:0.00}% of {ThirdCur.Name} = 0.00%");
-        }
-
-        private void ThirdListChanged(object sender, DragEventArgs e)
-        {
-            ThirdOne.ItemsSource = new ObservableCollection<string>(Explosives.ChemicalSubstances.Select(c => c.Name).Where(c => c != (string)Fuel.SelectedItem | c != (string)Oxidizer.SelectedItem));
-        }
+        }        
     }
 }
