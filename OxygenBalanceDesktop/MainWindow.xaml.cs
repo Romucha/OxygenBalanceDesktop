@@ -64,8 +64,9 @@ namespace OxygenBalanceDesktop
                 ThirdOne.SelectedIndex = -1;
                 ThirdShow.Content = null;
                 ThirdCur = null;
+                
             }
-
+            ThirdList.Remove((string)Fuel.SelectedItem);
             //check if FuelCur is not null
             if (FuelCur != null)
             {
@@ -88,6 +89,7 @@ namespace OxygenBalanceDesktop
             ThirdList.Remove(FuelCur.Name);
             //sort third list to get proper view
             ThirdList.Sort();
+            ThirdOne.ItemsSource = new List<string>(ThirdList);
         }
 
         //selection of 2nd element
@@ -98,9 +100,9 @@ namespace OxygenBalanceDesktop
             {
                 ThirdOne.SelectedIndex = -1;
                 ThirdShow.Content = null;
-                ThirdCur = null;
+                ThirdCur = null;                
             }
-
+            ThirdList.Remove((string)Oxidizer.SelectedItem);
             //check if OxidizerCur is not null
             if (OxidizerCur != null)
             {
@@ -123,6 +125,7 @@ namespace OxygenBalanceDesktop
             ThirdList.Remove(OxidizerCur.Name);
             //sort third list to get proper view
             ThirdList.Sort();
+            ThirdOne.ItemsSource = new List<string>(ThirdList);
         }
 
         //selection of 3rd element
@@ -169,18 +172,23 @@ namespace OxygenBalanceDesktop
         //show results of calculation
         private void CalculateBalance(object sender, EventArgs e)
         {
-            //balance of components
-            var b1 = FuelCur.Balance;
-            var b2 = OxidizerCur.Balance;
-            var b3 = ThirdCur.Balance;
-            //dose of third component
-            var d = ThirdDose;
+            if (FuelCur == null | OxidizerCur == null)
+                MessageBox.Show("Choose components first!");
+            else
+            {
+                //balance of components
+                var b1 = FuelCur.Balance;
+                var b2 = OxidizerCur.Balance;
+                var b3 = (ThirdCur == null) ? 0.0 : ThirdCur.Balance;
+                //dose of third component
+                var d = (ThirdCur == null) ? 0.0 : ThirdDose;
 
-            //dose of first component
-            var x = ((100 - d) * b2 + d * b3) / (b2 - b1);
-            //dose of second component
-            var y = 100 - d - x;
-            MessageBox.Show($"{x:0.00}% of {FuelCur.Name} + {y:0.00}% of {OxidizerCur.Name} + {d:0.00}% of {ThirdCur.Name} = 0.00%");
+                //dose of first component
+                var x = ((100 - d) * b2 + d * b3) / (b2 - b1);
+                //dose of second component
+                var y = 100 - d - x;
+                MessageBox.Show($"{x:0.00}% of {FuelCur.Name} + {y:0.00}% of {OxidizerCur.Name}" + ((ThirdCur == null) ? "" : $" + {d:0.00}% of {ThirdCur.Name}") + " = 0.00%");
+            }
         }        
     }
 }
