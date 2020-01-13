@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1
 C:\Users\Roman\source\repos\OxygenBalanceDesktop\OxygenBalanceDesktop\App.xaml
-2-1928788241
+31777771693
 
-4-244091093
+51369178905
 193-1225468690
-MainWindow.xaml;OxygenStyles.xaml;
+MainWindow.xaml;OxygenStyles.xaml;ResultWindow.xaml;
 
-False
+True
 

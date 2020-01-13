@@ -79,17 +79,20 @@ namespace OxygenBalanceDesktop
             }
 
             //try to get substance from list and store it in variable
-            Explosives.TryGetValue(Fuel.SelectedItem.ToString(), out ChemicalSubstance buf);
-            FuelCur = buf;
+            if (Fuel.SelectedItem != null)
+            {
+                Explosives.TryGetValue(Fuel.SelectedItem.ToString(), out ChemicalSubstance buf);
+                FuelCur = buf;
 
-            //show the chosen option
-            FuelShow.Content = buf.ToString();
+                //show the chosen option
+                FuelShow.Content = buf.ToString();
 
-            //remove new FuelCur from third list
-            ThirdList.Remove(FuelCur.Name);
-            //sort third list to get proper view
-            ThirdList.Sort();
-            ThirdOne.ItemsSource = new List<string>(ThirdList);
+                //remove new FuelCur from third list
+                ThirdList.Remove(FuelCur.Name);
+                //sort third list to get proper view
+                ThirdList.Sort();
+                ThirdOne.ItemsSource = new List<string>(ThirdList);
+            }
         }
 
         //selection of 2nd element
@@ -115,17 +118,20 @@ namespace OxygenBalanceDesktop
             }
 
             //try to get substance from list and store it in variable
-            Explosives.TryGetValue(Oxidizer.SelectedItem.ToString(), out ChemicalSubstance buf);
-            OxidizerCur = buf;
+            if (Oxidizer.SelectedItem != null)
+            {
+                Explosives.TryGetValue(Oxidizer.SelectedItem.ToString(), out ChemicalSubstance buf);
+                OxidizerCur = buf;
 
-            //show the chosen option
-            OxidizerShow.Content = buf.ToString();
+                //show the chosen option
+                OxidizerShow.Content = buf.ToString();
 
-            //remove new OxidizerCur from third list
-            ThirdList.Remove(OxidizerCur.Name);
-            //sort third list to get proper view
-            ThirdList.Sort();
-            ThirdOne.ItemsSource = new List<string>(ThirdList);
+                //remove new OxidizerCur from third list
+                ThirdList.Remove(OxidizerCur.Name);
+                //sort third list to get proper view
+                ThirdList.Sort();
+                ThirdOne.ItemsSource = new List<string>(ThirdList);
+            }
         }
 
         //selection of 3rd element
@@ -190,5 +196,35 @@ namespace OxygenBalanceDesktop
                 MessageBox.Show($"{x:0.00}% of {FuelCur.Name} + {y:0.00}% of {OxidizerCur.Name}" + ((ThirdCur == null) ? "" : $" + {d:0.00}% of {ThirdCur.Name}") + " = 0.00%");
             }
         }        
+
+        //reset all things
+        private void ResetClick(object sender, EventArgs e)
+        {
+            //reset current values (maybe not necessary)
+            FuelCur = null;
+            OxidizerCur = null;
+            ThirdCur = null;
+            ThirdDose = 0.0;
+            //reset all lists
+            Fuel.SelectedIndex = -1;
+            Oxidizer.SelectedIndex = -1;
+            ThirdOne.SelectedIndex = -1;
+            //reset dose and slider too
+            ThirdDoseShow.Text = "0.00";
+            ThirdSlider.Value = ThirdSlider.Minimum;
+            //restore third list to default
+            ThirdList = new List<string>(Explosives.ChemicalSubstances.Select(c => c.Name));
+            ThirdOne.ItemsSource = ThirdList;
+            //reset all labels
+            FuelShow.Content = "";
+            OxidizerShow.Content = "";
+            ThirdShow.Content = "";
+        }
+
+        //close application
+        private void CloseClick(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

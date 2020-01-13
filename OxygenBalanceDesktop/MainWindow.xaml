@@ -14,27 +14,32 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.75*"/>
-            <RowDefinition Height="1*"/>
             <RowDefinition Height="0.75*"/>
-            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1.5*"/>
             <RowDefinition Height="0.75*"/>
             <RowDefinition Height="1.5*"/>
             <RowDefinition Height="1*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="0.75*"/>
             <RowDefinition Height="0.75*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        <Label Content="Choose fuel:" Grid.Row="0" Grid.Column="0" Style="{StaticResource LabelStyle}"/>
-        <Label Content="Choose oxidizer:" Grid.Row="2" Grid.Column="0" Style="{StaticResource LabelStyle}"/>
-        <Label Content="Choose third element:" Grid.Row="4" Grid.Column="0" Style="{StaticResource LabelStyle}"/>
-        <Label Content="Choose dose of the third element:" Grid.Row="6" Grid.Column="0" Style="{StaticResource LabelStyle}"/>
-        <Label Grid.Row="1" Grid.Column="1" Style="{StaticResource LabelStyle}" Name="FuelShow"/>
-        <Label Grid.Row="3" Grid.Column="1" Style="{StaticResource LabelStyle}" Name="OxidizerShow"/>
-        <Label Grid.Row="5" Grid.Column="1" Style="{StaticResource LabelStyle}" Name="ThirdShow"/>
-        <TextBox Grid.Row="6" Grid.Column="1" Style="{StaticResource TextBoxStyle}" Text="0.00" Name="ThirdDoseShow" PreviewTextInput="ThirdTyped"/>
-        <Button Content="Calculate" Name="CalculateButton" Grid.ColumnSpan="2" Grid.Row="8" Style="{StaticResource ButtonStyle}" Click="CalculateBalance"/>
-        <ComboBox Name="Fuel" Grid.Row="1" Grid.Column="0" Style="{StaticResource :ComboBoxStyle}" SelectionChanged="FuelSelected"/>
-        <ComboBox Name="Oxidizer" Grid.Row="3" Grid.Column="0" Style="{StaticResource :ComboBoxStyle}" SelectionChanged="OxidizerSelected"/>
-        <ComboBox Name="ThirdOne" Grid.Row="5" Grid.Column="0" Style="{StaticResource :ComboBoxStyle}" SelectionChanged="ThirdSelected"/>
-        <Slider Grid.Row="7" Grid.Column="0" Style="{StaticResource SliderStyle}" Name="ThirdSlider" ValueChanged="DoseChanged"/>
+        <Menu x:Name="MainMenu">
+            <MenuItem Header="Reset" Click="ResetClick"/>
+            <MenuItem Header="Close" Click="CloseClick"/>
+        </Menu>
+        <Label Content="Choose fuel:" Grid.Row="1" Grid.Column="0" Style="{StaticResource LabelStyle}"/>
+        <Label Content="Choose oxidizer:" Grid.Row="3" Grid.Column="0" Style="{StaticResource LabelStyle}"/>
+        <Label Content="Choose third element:" Grid.Row="5" Grid.Column="0" Style="{StaticResource LabelStyle}"/>
+        <Label Content="Choose dose of the third element:" Grid.Row="7" Grid.Column="0" Style="{StaticResource LabelStyle}"/>
+        <Label Grid.Row="2" Grid.Column="1" Style="{StaticResource LabelStyle}" Name="FuelShow"/>
+        <Label Grid.Row="4" Grid.Column="1" Style="{StaticResource LabelStyle}" Name="OxidizerShow"/>
+        <Label Grid.Row="6" Grid.Column="1" Style="{StaticResource LabelStyle}" Name="ThirdShow"/>
+        <TextBox Grid.Row="7" Grid.Column="1" Style="{StaticResource TextBoxStyle}" Text="0.00" Name="ThirdDoseShow" PreviewTextInput="ThirdTyped"/>
+        <Button Content="Calculate" Name="CalculateButton" Grid.ColumnSpan="2" Grid.Row="9" Style="{StaticResource ButtonStyle}" Click="CalculateBalance"/>
+        <ComboBox Name="Fuel" Grid.Row="2" Grid.Column="0" Style="{StaticResource :ComboBoxStyle}" SelectionChanged="FuelSelected"/>
+        <ComboBox Name="Oxidizer" Grid.Row="4" Grid.Column="0" Style="{StaticResource :ComboBoxStyle}" SelectionChanged="OxidizerSelected"/>
+        <ComboBox Name="ThirdOne" Grid.Row="6" Grid.Column="0" Style="{StaticResource :ComboBoxStyle}" SelectionChanged="ThirdSelected"/>
+        <Slider Grid.Row="8" Grid.Column="0" Style="{StaticResource SliderStyle}" Name="ThirdSlider" ValueChanged="DoseChanged"/>
     </Grid>
 </Window>

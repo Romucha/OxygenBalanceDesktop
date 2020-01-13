@@ -20,3 +20,5 @@ C:\Users\Roman\source\repos\OxygenBalanceDesktop\OxygenBalanceDesktop\bin\Debug\
 C:\Users\Roman\source\repos\OxygenBalanceDesktop\OxygenBalanceDesktop\bin\Debug\netcoreapp3.1\PeriodicTable.pdb
 C:\Users\Roman\source\repos\OxygenBalanceDesktop\OxygenBalanceDesktop\obj\Debug\netcoreapp3.1\OxygenBalanceDesktop.csproj.CopyComplete
 C:\Users\Roman\source\repos\OxygenBalanceDesktop\OxygenBalanceDesktop\obj\Debug\netcoreapp3.1\OxygenBalanceDesktop.csprojAssemblyReference.cache
+C:\Users\Roman\source\repos\OxygenBalanceDesktop\OxygenBalanceDesktop\obj\Debug\netcoreapp3.1\ResultWindow.g.cs
+C:\Users\Roman\source\repos\OxygenBalanceDesktop\OxygenBalanceDesktop\obj\Debug\netcoreapp3.1\ResultWindow.baml
