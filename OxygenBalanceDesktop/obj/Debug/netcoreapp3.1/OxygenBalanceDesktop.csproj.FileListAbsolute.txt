@@ -22,3 +22,5 @@ C:\Users\Roman\source\repos\OxygenBalanceDesktop\OxygenBalanceDesktop\obj\Debug\
 C:\Users\Roman\source\repos\OxygenBalanceDesktop\OxygenBalanceDesktop\obj\Debug\netcoreapp3.1\OxygenBalanceDesktop.csprojAssemblyReference.cache
 C:\Users\Roman\source\repos\OxygenBalanceDesktop\OxygenBalanceDesktop\obj\Debug\netcoreapp3.1\ResultWindow.g.cs
 C:\Users\Roman\source\repos\OxygenBalanceDesktop\OxygenBalanceDesktop\obj\Debug\netcoreapp3.1\ResultWindow.baml
+C:\Users\Roman\source\repos\OxygenBalanceDesktop\OxygenBalanceDesktop\obj\Debug\netcoreapp3.1\AboutWindow.g.cs
+C:\Users\Roman\source\repos\OxygenBalanceDesktop\OxygenBalanceDesktop\obj\Debug\netcoreapp3.1\AboutWindow.baml

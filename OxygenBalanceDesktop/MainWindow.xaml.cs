@@ -226,5 +226,13 @@ namespace OxygenBalanceDesktop
         {
             this.Close();
         }
+
+        //show info about program
+        private void AboutClick(object sender, EventArgs e)
+        {
+            AboutWindow aboutWindow = new AboutWindow();
+            aboutWindow.Owner = this;
+            aboutWindow.Show();
+        }
     }
 }

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:OxygenBalanceDesktop"        
         Style="{DynamicResource OxygenStyles.xaml}"
         mc:Ignorable="d"
-        Title="Oxygen Balance" Height="700" Width="400">
+        Title="Oxygen Balance Calculation" Height="700" Width="400">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
@@ -24,8 +24,9 @@
             <RowDefinition Height="0.75*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        <Menu x:Name="MainMenu">
+        <Menu x:Name="MainMenu" Style="{StaticResource MenuStyle}">
             <MenuItem Header="Reset" Click="ResetClick"/>
+            <MenuItem Header="About" Click="AboutClick"/>
             <MenuItem Header="Close" Click="CloseClick"/>
         </Menu>
         <Label Content="Choose fuel:" Grid.Row="1" Grid.Column="0" Style="{StaticResource LabelStyle}"/>
