@@ -21,16 +21,16 @@ namespace OxygenBalanceDesktop
     public partial class MainWindow : Window
     {
         //chosen fuel
-        private ChemicalSubstance FuelCur { get; set; }
+        internal ChemicalSubstance FuelCur { get; private set; }
 
         //chosen oxidizer
-        private ChemicalSubstance OxidizerCur { get; set; }
+        internal ChemicalSubstance OxidizerCur { get; private set; }
 
         //chosen third substance
-        private ChemicalSubstance ThirdCur { get; set; }
+        internal ChemicalSubstance ThirdCur { get; private set; }
 
         //dose of third substance
-        private double ThirdDose { get; set; }
+        internal double ThirdDose { get; private set; }
 
         //fuel list
         private ObservableCollection<string> FuelList { get; set; }
@@ -188,12 +188,31 @@ namespace OxygenBalanceDesktop
                 var b3 = (ThirdCur == null) ? 0.0 : ThirdCur.Balance;
                 //dose of third component
                 var d = (ThirdCur == null) ? 0.0 : ThirdDose;
-
                 //dose of first component
                 var x = ((100 - d) * b2 + d * b3) / (b2 - b1);
                 //dose of second component
                 var y = 100 - d - x;
-                MessageBox.Show($"{x:0.00}% of {FuelCur.Name} + {y:0.00}% of {OxidizerCur.Name}" + ((ThirdCur == null) ? "" : $" + {d:0.00}% of {ThirdCur.Name}") + " = 0.00%");
+                //MessageBox.Show($"{x:0.00}% of {FuelCur.Name} + {y:0.00}% of {OxidizerCur.Name}" + ((ThirdCur == null) ? "" : $" + {d:0.00}% of {ThirdCur.Name}") + " = 0.00%");
+                //create new window of results
+                ResultWindow resultWindow = new ResultWindow();
+                resultWindow.Owner = this;
+
+                //fill its labels
+                //fuel
+                resultWindow.FuelInfo.Content = FuelCur.ToString();
+                resultWindow.FuelDose.Content = x.ToString();
+                //oxidizer
+                resultWindow.Oxidizerinfo.Content = OxidizerCur.ToString();
+                resultWindow.OxidizerDose.Content = y.ToString();
+                //third component (optional)
+                if (ThirdCur != null)
+                {
+                    resultWindow.ThirdInfo.Content = ((ThirdCur.Balance > 0.0) ? "Phlegmatizer" : "Sensitizer") + ":\n" + ThirdCur.ToString();
+                    resultWindow.ThirdDose.Content = d.ToString();
+                }
+
+                //show it
+                resultWindow.Show();
             }
         }        
 

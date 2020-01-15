@@ -19,7 +19,7 @@
         </Grid.RowDefinitions>
         <TextBlock Style="{StaticResource TitleStyle}" Grid.Row="0" Grid.Column="0">Oxygen Balance Calculation</TextBlock>
         <TextBlock Style="{StaticResource TextBlockStyle}" Grid.Row="1" Grid.Column="0">This application allow to calculate dose of each of 2 or 3 components to get an optimal<LineBreak/> multicomponent explosive mixture.<LineBreak/><LineBreak/>To get results simply choose fuel, oxidizer, third component and its dose (optional) and<LineBreak/> click button "Calculate".</TextBlock>
-        <TextBlock Style="{StaticResource TextBlockStyle}" Grid.Row="2" Grid.Column="0" TextAlignment="Center">The application is non-commercial and serves purposes only.</TextBlock>
+        <TextBlock Style="{StaticResource TextBlockStyle}" Grid.Row="2" Grid.Column="0" TextAlignment="Center">The application is non-commercial and serves demonstrational purposes only.</TextBlock>
         <Button Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource ButtonStyle}" Content="OK" Click="AboutOK"></Button> 
     </Grid>
 </Window>
