@@ -199,16 +199,17 @@ namespace OxygenBalanceDesktop
 
                 //fill its labels
                 //fuel
-                resultWindow.FuelInfo.Content = FuelCur.ToString();
-                resultWindow.FuelDose.Content = x.ToString();
+                resultWindow.FuelInfo.Content = "Fuel:\n" + FuelCur.ToString();
+                resultWindow.FuelDose.Content = "Fuel dose:\n" + x.ToString();
                 //oxidizer
-                resultWindow.Oxidizerinfo.Content = OxidizerCur.ToString();
-                resultWindow.OxidizerDose.Content = y.ToString();
+                resultWindow.OxidizerInfo.Content = "Oxidizer:\n" + OxidizerCur.ToString();
+                resultWindow.OxidizerDose.Content = "Oxidizer dose:\n" + y.ToString();
                 //third component (optional)
                 if (ThirdCur != null)
                 {
-                    resultWindow.ThirdInfo.Content = ((ThirdCur.Balance > 0.0) ? "Phlegmatizer" : "Sensitizer") + ":\n" + ThirdCur.ToString();
-                    resultWindow.ThirdDose.Content = d.ToString();
+                    var name = (ThirdCur.Balance > 0.0) ? "Phlegmatizer" : "Sensitizer";
+                    resultWindow.ThirdInfo.Content = name + ":\n" + ThirdCur.ToString();
+                    resultWindow.ThirdDose.Content = name + " dose:\n" + d.ToString();
                 }
 
                 //show it

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OxygenBalanceDesktop"
         mc:Ignorable="d"
-        Title="Result" Height="450" Width="800">
+        Title="Result" Height="500" Width="350">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -18,11 +18,11 @@
             <RowDefinition Height="1.5*"/>
         </Grid.RowDefinitions>
         <Menu x:Name="ResultMenu" Style="{StaticResource MenuStyle}">
-            <MenuItem Header="Save"/>
-            <MenuItem Header="Close"/>
+            <MenuItem Header="Save" Click="ResultSave"/>
+            <MenuItem Header="Close" Click="ResultClose"/>
         </Menu>
         <Label Name="FuelInfo" Style="{StaticResource LabelStyle}" Grid.Row="1" Grid.Column="0"/>
-        <Label Name="Oxidizerinfo" Style="{StaticResource LabelStyle}" Grid.Row="2" Grid.Column="0"/>
+        <Label Name="OxidizerInfo" Style="{StaticResource LabelStyle}" Grid.Row="2" Grid.Column="0"/>
         <Label Name="ThirdInfo" Style="{StaticResource LabelStyle}" Grid.Row="3" Grid.Column="0"/>
         <Label Name="FuelDose" Style="{StaticResource LabelStyle}" Grid.Row="1" Grid.Column="1"/>
         <Label Name="OxidizerDose" Style="{StaticResource LabelStyle}" Grid.Row="2" Grid.Column="1"/>

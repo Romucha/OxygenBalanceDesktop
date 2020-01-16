@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:OxygenBalanceDesktop"        
         Style="{DynamicResource OxygenStyles.xaml}"
         mc:Ignorable="d"
-        Title="Oxygen Balance Calculation" Height="700" Width="400" Name="BaseWindow" RowDefinition.Height="1.5*">
+        Title="Oxygen Balance Calculation" Height="700" Width="400" Name="BaseWindow">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
