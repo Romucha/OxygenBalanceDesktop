@@ -3,9 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:res="clr-namespace:OxygenBalanceDesktop"
         xmlns:local="clr-namespace:OxygenBalanceDesktop"
         mc:Ignorable="d"
-        Title="Result" Height="500" Width="350">
+        Title="{x:Static res:Resources.ResultTitle}" Height="500" Width="350">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -18,8 +19,8 @@
             <RowDefinition Height="1.5*"/>
         </Grid.RowDefinitions>
         <Menu x:Name="ResultMenu" Style="{StaticResource MenuStyle}">
-            <MenuItem Header="Save" Click="ResultSave"/>
-            <MenuItem Header="Close" Click="ResultClose"/>
+            <MenuItem Header="{x:Static res:Resources.SaveButton}" Click="ResultSave"/>
+            <MenuItem Header="{x:Static res:Resources.CloseButton}" Click="ResultClose"/>
         </Menu>
         <Label Name="FuelInfo" Style="{StaticResource LabelStyle}" Grid.Row="1" Grid.Column="0"/>
         <Label Name="OxidizerInfo" Style="{StaticResource LabelStyle}" Grid.Row="2" Grid.Column="0"/>

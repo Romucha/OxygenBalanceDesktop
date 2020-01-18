@@ -205,7 +205,7 @@ namespace OxygenBalanceDesktop
                 resultWindow.OxidizerInfo.Content = "Oxidizer:\n" + OxidizerCur.ToString();
                 resultWindow.OxidizerDose.Content = "Oxidizer dose:\n" + y.ToString();
                 //third component (optional)
-                if (ThirdCur != null)
+                if (ThirdCur != null && ThirdDose != 0.0)
                 {
                     var name = (ThirdCur.Balance > 0.0) ? "Phlegmatizer" : "Sensitizer";
                     resultWindow.ThirdInfo.Content = name + ":\n" + ThirdCur.ToString();
@@ -253,6 +253,18 @@ namespace OxygenBalanceDesktop
             AboutWindow aboutWindow = new AboutWindow();
             aboutWindow.Owner = this;
             aboutWindow.Show();
+        }
+
+        //switch to English
+        private void SwitchToEnglish(object sender, EventArgs e)
+        {
+            System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
+        }
+
+        //switch to Russian
+        private void SwitchToRussian(object sender, EventArgs e)
+        {
+            System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("ru-RU");
         }
     }
 }
