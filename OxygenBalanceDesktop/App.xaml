@@ -4,6 +4,11 @@
              xmlns:local="clr-namespace:OxygenBalanceDesktop"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        <ResourceDictionary Source="OxygenStyles.xaml"/>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="OxygenStyles.xaml"/>
+                <ResourceDictionary Source="Resources/LocalDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

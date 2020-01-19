@@ -18,6 +18,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyProductAttribute("OxygenBalanceDesktop")]
 [assembly: System.Reflection.AssemblyTitleAttribute("OxygenBalanceDesktop")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
+[assembly: System.Resources.NeutralResourcesLanguageAttribute("en-US")]
 
 // Создано классом WriteCodeFragment MSBuild.
 

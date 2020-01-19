@@ -3,15 +3,14 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:res="clr-namespace:OxygenBalanceDesktop"
         xmlns:local="clr-namespace:OxygenBalanceDesktop"      
         Style="{DynamicResource OxygenStyles.xaml}"
         mc:Ignorable="d"
-        Title="{x:Static res:Resources.MainWindowTitle}" Height="700" Width="400" Name="BaseWindow">
+        Title="{DynamicResource MainWindowTitle}" Height="700" Width="450"  Name="BaseWindow">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1.1*"/>
+            <ColumnDefinition Width="1.1*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.75*"/>
@@ -26,23 +25,23 @@
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
         <Menu x:Name="MainMenu" Style="{StaticResource MenuStyle}" Grid.ColumnSpan="2">
-            <MenuItem Header="{x:Static res:Resources.ResetButton}" Click="ResetClick"/>
-            <MenuItem Header="{x:Static res:Resources.AboutButton}" Click="AboutClick"/>
-            <MenuItem Header="{x:Static res:Resources.LanguageSwitchButton}">
-                <MenuItem Header="English" Click="SwitchToEnglish"/>
-                <MenuItem Header="Русский" Click="SwitchToRussian"/>
+            <MenuItem Header="{DynamicResource ResetButton}" Click="ResetClick"/>
+            <MenuItem Header="{DynamicResource AboutButton}" Click="AboutClick"/>
+            <MenuItem Header="{DynamicResource Language}">
+                <MenuItem Header="English" Click="SwitchCulture"/>
+                <MenuItem Header="Русский" Click="SwitchCulture"/>
             </MenuItem>
-            <MenuItem Header="{x:Static res:Resources.CloseButton}" Click="CloseClick"/>
+            <MenuItem Header="{DynamicResource CloseButton}" Click="CloseClick"/>
         </Menu>
-        <Label Content="{x:Static res:Resources.ChooseFuel}" Grid.Row="1" Grid.Column="0" Style="{StaticResource LabelStyle}"/>
-        <Label Content="{x:Static res:Resources.ChooseOxidizer}" Grid.Row="3" Grid.Column="0" Style="{StaticResource LabelStyle}"/>
-        <Label Content="{x:Static res:Resources.ChooseThirdElement}" Grid.Row="5" Grid.Column="0" Style="{StaticResource LabelStyle}"/>
-        <Label Content="{x:Static res:Resources.ChooseDoseOfThirdElement}" Grid.Row="7" Grid.Column="0" Style="{StaticResource LabelStyle}"/>
+        <Label Content="{DynamicResource ChooseFuel}" Grid.Row="1" Grid.Column="0" Style="{StaticResource LabelStyle}"/>
+        <Label Content="{DynamicResource ChooseOxidizer}" Grid.Row="3" Grid.Column="0" Style="{StaticResource LabelStyle}"/>
+        <Label Content="{DynamicResource ChooseThirdElement}" Grid.Row="5" Grid.Column="0" Style="{StaticResource LabelStyle}"/>
+        <Label Content="{DynamicResource ChooseDoseOfThirdComponent}" Grid.Row="7" Grid.Column="0" Style="{StaticResource LabelStyle}"/>
         <Label Grid.Row="2" Grid.Column="1" Style="{StaticResource LabelStyle}" Name="FuelShow"/>
         <Label Grid.Row="4" Grid.Column="1" Style="{StaticResource LabelStyle}" Name="OxidizerShow"/>
         <Label Grid.Row="6" Grid.Column="1" Style="{StaticResource LabelStyle}" Name="ThirdShow"/>
         <TextBox Grid.Row="7" Grid.Column="1" Style="{StaticResource TextBoxStyle}" Text="0.00" Name="ThirdDoseShow" PreviewTextInput="ThirdTyped"/>
-        <Button Content="{x:Static res:Resources.CalculateButton}" Name="CalculateButton" Grid.ColumnSpan="2" Grid.Row="9" Style="{StaticResource ButtonStyle}" Click="CalculateBalance"/>
+        <Button Content="{DynamicResource CalculateButton}" Name="CalculateButton" Grid.ColumnSpan="2" Grid.Row="9" Style="{StaticResource ButtonStyle}" Click="CalculateBalance"/>
         <ComboBox Name="Fuel" Grid.Row="2" Grid.Column="0" Style="{StaticResource :ComboBoxStyle}" SelectionChanged="FuelSelected"/>
         <ComboBox Name="Oxidizer" Grid.Row="4" Grid.Column="0" Style="{StaticResource :ComboBoxStyle}" SelectionChanged="OxidizerSelected"/>
         <ComboBox Name="ThirdOne" Grid.Row="6" Grid.Column="0" Style="{StaticResource :ComboBoxStyle}" SelectionChanged="ThirdSelected"/>

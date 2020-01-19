@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using PeriodicTable;
 using System.IO;
 using System.Collections.ObjectModel;
+using System.Globalization;
 
 namespace OxygenBalanceDesktop
 {    
@@ -39,7 +40,6 @@ namespace OxygenBalanceDesktop
         private ObservableCollection<string> OxidizerList { get; set; }
 
         //third component list
-        //ObservableCollection<string> ThirdList { get; set; }
         //was made a list to get proper sort methods
         List<string> ThirdList { get; set; }
 
@@ -50,9 +50,10 @@ namespace OxygenBalanceDesktop
             Fuel.ItemsSource = FuelList;
             OxidizerList = new ObservableCollection<string>(Explosives.ChemicalSubstances.Where(c => c.Balance > 0.0).Select(c => c.Name));
             Oxidizer.ItemsSource = OxidizerList;
-            //ThirdList = new ObservableCollection<string>(Explosives.ChemicalSubstances.Select(c => c.Name));
             ThirdList = new List<string>(Explosives.ChemicalSubstances.Select(c => c.Name));
             ThirdOne.ItemsSource = ThirdList;
+
+            this.Resources = new ResourceDictionary() { Source = new Uri("C:/Users/Roman/source/repos/OxygenBalanceDesktop/OxygenBalanceDesktop/Resources/LocalDictionary.xaml") };          
         }
 
         //selection of 1st element
@@ -142,7 +143,7 @@ namespace OxygenBalanceDesktop
                 Explosives.TryGetValue(ThirdOne.SelectedItem.ToString(), out ChemicalSubstance buf);
                 ThirdCur = buf;
                 //show chosen option
-                ThirdShow.Content = ((buf.Balance > 0.0) ? "Phlegmatizer" : "Sensitizer") + ":\n" + buf.ToString();
+                ThirdShow.Content = ((buf.Balance > 0.0) ? Resources["Phlegmatizer"] : Resources["Sensitizer"]) + "/n" + buf.ToString();
             }
         }
 
@@ -179,7 +180,7 @@ namespace OxygenBalanceDesktop
         private void CalculateBalance(object sender, EventArgs e)
         {
             if (FuelCur == null | OxidizerCur == null)
-                MessageBox.Show("Choose components first!");
+                MessageBox.Show(Resources["ChooseComponentFirst"].ToString());
             else
             {
                 //balance of components
@@ -192,24 +193,22 @@ namespace OxygenBalanceDesktop
                 var x = ((100 - d) * b2 + d * b3) / (b2 - b1);
                 //dose of second component
                 var y = 100 - d - x;
-                //MessageBox.Show($"{x:0.00}% of {FuelCur.Name} + {y:0.00}% of {OxidizerCur.Name}" + ((ThirdCur == null) ? "" : $" + {d:0.00}% of {ThirdCur.Name}") + " = 0.00%");
                 //create new window of results
                 ResultWindow resultWindow = new ResultWindow();
                 resultWindow.Owner = this;
 
                 //fill its labels
                 //fuel
-                resultWindow.FuelInfo.Content = "Fuel:\n" + FuelCur.ToString();
-                resultWindow.FuelDose.Content = "Fuel dose:\n" + x.ToString();
+                resultWindow.FuelInfo.Content = Resources["FuelInfo"] + "/n" + FuelCur.ToString();
+                resultWindow.FuelDose.Content = Resources["FuelDose"] + "/n" + x.ToString();
                 //oxidizer
-                resultWindow.OxidizerInfo.Content = "Oxidizer:\n" + OxidizerCur.ToString();
-                resultWindow.OxidizerDose.Content = "Oxidizer dose:\n" + y.ToString();
+                resultWindow.OxidizerInfo.Content = Resources["Oxidizer"] + "/n" + OxidizerCur.ToString();
+                resultWindow.OxidizerDose.Content = Resources["OxidizerDose"] + "/n" + y.ToString();
                 //third component (optional)
                 if (ThirdCur != null && ThirdDose != 0.0)
                 {
-                    var name = (ThirdCur.Balance > 0.0) ? "Phlegmatizer" : "Sensitizer";
-                    resultWindow.ThirdInfo.Content = name + ":\n" + ThirdCur.ToString();
-                    resultWindow.ThirdDose.Content = name + " dose:\n" + d.ToString();
+                    resultWindow.ThirdInfo.Content = (ThirdCur.Balance > 0.0) ? Resources["Phlegmatizer"] : Resources["Sensitizer"] + "/n" + ThirdCur.ToString();
+                    resultWindow.ThirdDose.Content = (ThirdCur.Balance > 0.0) ? Resources["PhlegmatizerDose"] : Resources["SensitizerDose"] + "/n" + d.ToString();
                 }
 
                 //show it
@@ -255,16 +254,20 @@ namespace OxygenBalanceDesktop
             aboutWindow.Show();
         }
 
-        //switch to English
-        private void SwitchToEnglish(object sender, EventArgs e)
+        //switch cultures
+        private void SwitchCulture(object sender, EventArgs e)
         {
-            System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
-        }
+            CultureInfo curCult = System.Threading.Thread.CurrentThread.CurrentUICulture;
 
-        //switch to Russian
-        private void SwitchToRussian(object sender, EventArgs e)
-        {
-            System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("ru-RU");
+            switch(curCult.Name)
+            {
+                case "ru-RU":
+                    MessageBox.Show("Russian");
+                    break;
+                case "en-US":
+                    MessageBox.Show("English");
+                    break;
+            }
         }
     }
 }

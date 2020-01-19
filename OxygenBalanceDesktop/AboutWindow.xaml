@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OxygenBalanceDesktop"
         mc:Ignorable="d"
-        Title="About Oxygen Balance Calculation" Height="450" Width="800" Name="AboutWindowName">
+        Title="{DynamicResource AboutOxygenBalanceTitle}" Height="450" Width="800" Name="AboutWindowName">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -17,7 +17,7 @@
             <RowDefinition Height="1.5*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        <TextBlock Style="{StaticResource TitleStyle}" Grid.Row="0" Grid.Column="0">Oxygen Balance Calculation</TextBlock>
+        <TextBlock Style="{StaticResource TitleStyle}" Grid.Row="0" Grid.Column="0" Text="{DynamicResource MainWindowTitle}"></TextBlock>
         <TextBlock Style="{StaticResource TextBlockStyle}" Grid.Row="1" Grid.Column="0">This application allow to calculate dose of each of 2 or 3 components to get an optimal<LineBreak/> multicomponent explosive mixture.<LineBreak/><LineBreak/>To get results simply choose fuel, oxidizer, third component and its dose (optional) and<LineBreak/> click button "Calculate".</TextBlock>
         <TextBlock Style="{StaticResource TextBlockStyle}" Grid.Row="2" Grid.Column="0" TextAlignment="Center">The application is non-commercial and serves demonstrational purposes only.</TextBlock>
         <Button Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource ButtonStyle}" Content="OK" Click="AboutOK"></Button> 

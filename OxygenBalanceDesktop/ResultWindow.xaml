@@ -6,7 +6,7 @@
         xmlns:res="clr-namespace:OxygenBalanceDesktop"
         xmlns:local="clr-namespace:OxygenBalanceDesktop"
         mc:Ignorable="d"
-        Title="{x:Static res:Resources.ResultTitle}" Height="500" Width="350">
+        Title="{DynamicResource ResultTitle}" Height="500" Width="350">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -19,8 +19,8 @@
             <RowDefinition Height="1.5*"/>
         </Grid.RowDefinitions>
         <Menu x:Name="ResultMenu" Style="{StaticResource MenuStyle}">
-            <MenuItem Header="{x:Static res:Resources.SaveButton}" Click="ResultSave"/>
-            <MenuItem Header="{x:Static res:Resources.CloseButton}" Click="ResultClose"/>
+            <MenuItem Header="{DynamicResource SaveButton}" Click="ResultSave"/>
+            <MenuItem Header="{DynamicResource CloseButton}" Click="ResultClose"/>
         </Menu>
         <Label Name="FuelInfo" Style="{StaticResource LabelStyle}" Grid.Row="1" Grid.Column="0"/>
         <Label Name="OxidizerInfo" Style="{StaticResource LabelStyle}" Grid.Row="2" Grid.Column="0"/>

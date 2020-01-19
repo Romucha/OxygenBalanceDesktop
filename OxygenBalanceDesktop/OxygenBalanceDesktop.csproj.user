@@ -18,6 +18,12 @@
     <Page Update="AboutWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Resources\LocalDictionary.ru-RU.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Resources\LocalDictionary.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>

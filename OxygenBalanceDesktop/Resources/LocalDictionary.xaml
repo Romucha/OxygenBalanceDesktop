@@ -1,0 +1,33 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:OxygenBalanceDesktop"
+                    xmlns:v="clr-namespace:System;assembly=System.Runtime">
+
+    <v:String x:Key="FuelInfo">Fuel:</v:String>
+    <v:String x:Key="OxidizerInfo">Oxidizer:</v:String>
+    <v:String x:Key="Phlegmatizer">Phlegmatizer:</v:String>
+    <v:String x:Key="PhlegmatizerDose">Phlegmatizer dose:</v:String>
+    <v:String x:Key="MainWindowTitle">Oxygen Balance Calculation</v:String>
+    <v:String x:Key="AboutOxygenBalanceTitle">About Oxygen Balance Calculation</v:String>
+    <v:String x:Key="AboutButton">About</v:String>
+    <v:String x:Key="CalculateButton">Calculate</v:String>
+    <v:String x:Key="ChooseComponentFirst">Choose components first!</v:String>
+    <v:String x:Key="ChooseDoseOfThirdComponent">Choose dose of third component:</v:String>
+    <v:String x:Key="ChooseFuel">Choose fuel:</v:String>
+    <v:String x:Key="ChooseOxidizer">Choose oxidizer:</v:String>
+    <v:String x:Key="ChooseThirdElement">Choose third component:</v:String>
+    <v:String x:Key="CloseButton">Close</v:String>
+    <v:String x:Key="FuelDose">Fuel dose:</v:String>
+    <v:String x:Key="OxidizerDose">Oxidizer dose:</v:String>
+    <v:String x:Key="ResetButton">Reset</v:String>
+    <v:String x:Key="ResultTitle">Result</v:String>
+    <v:String x:Key="SaveButton">Save</v:String>
+    <v:String x:Key="Sensitizer">Sensitizer:</v:String>
+    <v:String x:Key="SensitizerDose">Sensitizer dose:</v:String>
+    <v:String x:Key="About1stPart">Sensitizer:</v:String>
+    <v:String x:Key="About2ndPart">Sensitizer:</v:String>
+    <v:String x:Key="About3rdPart">Sensitizer:</v:String> 
+    <v:String x:Key="Language">Language</v:String>
+    
+
+</ResourceDictionary>
