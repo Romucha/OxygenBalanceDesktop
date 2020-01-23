@@ -25,3 +25,4 @@ C:\Users\Roman\source\repos\OxygenBalanceDesktop\OxygenBalanceDesktop\obj\Debug\
 C:\Users\Roman\source\repos\OxygenBalanceDesktop\OxygenBalanceDesktop\obj\Debug\netcoreapp3.1\AboutWindow.baml
 C:\Users\Roman\source\repos\OxygenBalanceDesktop\OxygenBalanceDesktop\obj\Debug\netcoreapp3.1\Resources\LocalDictionary.ru-RU.baml
 C:\Users\Roman\source\repos\OxygenBalanceDesktop\OxygenBalanceDesktop\obj\Debug\netcoreapp3.1\Resources\LocalDictionary.baml
+C:\Users\Roman\source\repos\OxygenBalanceDesktop\OxygenBalanceDesktop\obj\Debug\netcoreapp3.1\OxygenBalanceDesktop.csprojAssemblyReference.cache

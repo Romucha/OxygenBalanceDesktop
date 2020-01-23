@@ -17,6 +17,7 @@ namespace OxygenBalanceDesktop
         public AboutWindow()
         {
             InitializeComponent();
+            //this.Resources = this.Owner.Resources;
         }
 
         //close about window

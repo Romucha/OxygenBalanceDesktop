@@ -28,8 +28,8 @@
             <MenuItem Header="{DynamicResource ResetButton}" Click="ResetClick"/>
             <MenuItem Header="{DynamicResource AboutButton}" Click="AboutClick"/>
             <MenuItem Header="{DynamicResource Language}">
-                <MenuItem Header="English" Click="SwitchCulture"/>
-                <MenuItem Header="Русский" Click="SwitchCulture"/>
+                <MenuItem Header="English" Click="SwitchCulture" Tag="en-Us"/>
+                <MenuItem Header="Русский" Click="SwitchCulture" Tag="ru-RU"/>
             </MenuItem>
             <MenuItem Header="{DynamicResource CloseButton}" Click="CloseClick"/>
         </Menu>

@@ -53,7 +53,7 @@ namespace OxygenBalanceDesktop
             ThirdList = new List<string>(Explosives.ChemicalSubstances.Select(c => c.Name));
             ThirdOne.ItemsSource = ThirdList;
 
-            this.Resources = new ResourceDictionary() { Source = new Uri("C:/Users/Roman/source/repos/OxygenBalanceDesktop/OxygenBalanceDesktop/Resources/LocalDictionary.xaml") };          
+            this.Resources = new ResourceDictionary() { Source = new Uri("Resources/LocalDictionary.xaml", UriKind.Relative) };          
         }
 
         //selection of 1st element
@@ -143,7 +143,7 @@ namespace OxygenBalanceDesktop
                 Explosives.TryGetValue(ThirdOne.SelectedItem.ToString(), out ChemicalSubstance buf);
                 ThirdCur = buf;
                 //show chosen option
-                ThirdShow.Content = ((buf.Balance > 0.0) ? Resources["Phlegmatizer"] : Resources["Sensitizer"]) + "/n" + buf.ToString();
+                ThirdShow.Content = ((buf.Balance > 0.0) ? Resources["Phlegmatizer"] : Resources["Sensitizer"]) + "\n" + buf.ToString();
             }
         }
 
@@ -199,16 +199,16 @@ namespace OxygenBalanceDesktop
 
                 //fill its labels
                 //fuel
-                resultWindow.FuelInfo.Content = Resources["FuelInfo"] + "/n" + FuelCur.ToString();
-                resultWindow.FuelDose.Content = Resources["FuelDose"] + "/n" + x.ToString();
+                resultWindow.FuelInfo.Content = Resources["FuelInfo"] + "\n" + FuelCur.ToString();
+                resultWindow.FuelDose.Content = Resources["FuelDose"] + "\n" + x.ToString();
                 //oxidizer
-                resultWindow.OxidizerInfo.Content = Resources["Oxidizer"] + "/n" + OxidizerCur.ToString();
-                resultWindow.OxidizerDose.Content = Resources["OxidizerDose"] + "/n" + y.ToString();
+                resultWindow.OxidizerInfo.Content = Resources["OxidizerInfo"] + "\n" + OxidizerCur.ToString();
+                resultWindow.OxidizerDose.Content = Resources["OxidizerDose"] + "\n" + y.ToString();
                 //third component (optional)
                 if (ThirdCur != null && ThirdDose != 0.0)
                 {
-                    resultWindow.ThirdInfo.Content = (ThirdCur.Balance > 0.0) ? Resources["Phlegmatizer"] : Resources["Sensitizer"] + "/n" + ThirdCur.ToString();
-                    resultWindow.ThirdDose.Content = (ThirdCur.Balance > 0.0) ? Resources["PhlegmatizerDose"] : Resources["SensitizerDose"] + "/n" + d.ToString();
+                    resultWindow.ThirdInfo.Content = (ThirdCur.Balance > 0.0) ? Resources["Phlegmatizer"] : Resources["Sensitizer"] + "\n" + ThirdCur.ToString();
+                    resultWindow.ThirdDose.Content = (ThirdCur.Balance > 0.0) ? Resources["PhlegmatizerDose"] : Resources["SensitizerDose"] + "\n" + d.ToString();
                 }
 
                 //show it
@@ -257,17 +257,8 @@ namespace OxygenBalanceDesktop
         //switch cultures
         private void SwitchCulture(object sender, EventArgs e)
         {
-            CultureInfo curCult = System.Threading.Thread.CurrentThread.CurrentUICulture;
-
-            switch(curCult.Name)
-            {
-                case "ru-RU":
-                    MessageBox.Show("Russian");
-                    break;
-                case "en-US":
-                    MessageBox.Show("English");
-                    break;
-            }
+            string path = "Resources/LocalDictionary" + (((MenuItem)sender).Tag.ToString() == "ru-RU" ? ".ru-RU" : "") + ".xaml";
+            this.Resources=new ResourceDictionary() { Source = new Uri(path, UriKind.Relative) };
         }
     }
 }
