@@ -196,6 +196,7 @@ namespace OxygenBalanceDesktop
                 //create new window of results
                 ResultWindow resultWindow = new ResultWindow();
                 resultWindow.Owner = this;
+                resultWindow.Resources = this.Resources;
 
                 //fill its labels
                 //fuel
@@ -251,6 +252,7 @@ namespace OxygenBalanceDesktop
         {
             AboutWindow aboutWindow = new AboutWindow();
             aboutWindow.Owner = this;
+            aboutWindow.Resources = this.Resources;
             aboutWindow.Show();
         }
 
