@@ -7,7 +7,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="OxygenStyles.xaml"/>
-                <ResourceDictionary Source="Resources/LocalDictionary.xaml"/>
+                <ResourceDictionary Source="Resources/LocalDictionary.en-US.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

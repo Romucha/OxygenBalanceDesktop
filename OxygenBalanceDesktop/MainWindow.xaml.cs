@@ -54,8 +54,8 @@ namespace OxygenBalanceDesktop
             ThirdOne.ItemsSource = ThirdList;
 
             //setting default language
-            this.Resources = new ResourceDictionary() { Source = new Uri("Resources/LocalDictionary.xaml", UriKind.Relative) };
-            System.Threading.Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
+            var path = "Resources/LocalDictionary." + System.Threading.Thread.CurrentThread.CurrentUICulture.Name + ".xaml";
+            this.Resources = new ResourceDictionary() { Source = new Uri(path, UriKind.Relative) };
         }
 
         //selection of 1st element
@@ -266,8 +266,15 @@ namespace OxygenBalanceDesktop
             if (System.Threading.Thread.CurrentThread.CurrentUICulture.Name != menu.Tag.ToString())
             {
                 System.Threading.Thread.CurrentThread.CurrentUICulture = new CultureInfo(menu.Tag.ToString());
-                string path = "Resources/LocalDictionary" + (menu.Tag.ToString() == "ru-RU" ? ".ru-RU" : "") + ".xaml";
+                string path = "Resources/LocalDictionary" + (menu.Tag.ToString() == "ru-RU" ? ".ru-RU" : ".en-US") + ".xaml";
                 this.Resources = new ResourceDictionary() { Source = new Uri(path, UriKind.Relative) };
+                ResetClick(sender, e);
+                //make new list of explosives
+                Explosives.CreateList(System.Threading.Thread.CurrentThread.CurrentUICulture);
+                //recreate all comboboxes
+                Fuel.ItemsSource = new ObservableCollection<string>(Explosives.ChemicalSubstances.Where(c => c.Balance < 0.0).Select(c => c.Name));
+                Oxidizer.ItemsSource = new ObservableCollection<string>(Explosives.ChemicalSubstances.Where(c => c.Balance > 0.0).Select(c => c.Name));
+                ThirdOne.ItemsSource = new List<string>(Explosives.ChemicalSubstances.Select(c => c.Name));
             }            
         }
     }

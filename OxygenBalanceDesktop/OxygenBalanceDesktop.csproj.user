@@ -21,7 +21,7 @@
     <Page Update="Resources\LocalDictionary.ru-RU.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Resources\LocalDictionary.xaml">
+    <Page Update="Resources\LocalDictionary.en-US.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MainWindow.xaml">
