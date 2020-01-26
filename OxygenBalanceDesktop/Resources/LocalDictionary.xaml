@@ -24,9 +24,9 @@
     <v:String x:Key="SaveButton">Save</v:String>
     <v:String x:Key="Sensitizer">Sensitizer:</v:String>
     <v:String x:Key="SensitizerDose">Sensitizer dose:</v:String>
-    <v:String x:Key="About1stPart">Sensitizer:</v:String>
-    <v:String x:Key="About2ndPart">Sensitizer:</v:String>
-    <v:String x:Key="About3rdPart">Sensitizer:</v:String> 
+    <v:String x:Key="About1stPart">This application allow to calculate dose of each of 2 or 3 components to get an optimal multicomponent explosive mixture with oxygen balance of 0.0%.</v:String>
+    <v:String x:Key="About2ndPart">To get results simply choose fuel, oxidizer, third component and its dose (optional) and click button "Calculate".</v:String>
+    <v:String x:Key="About3rdPart">The application is non-commercial and serves demonstrational purposes only.</v:String> 
     <v:String x:Key="Language">Language</v:String>
     
 

@@ -24,9 +24,9 @@
     <v:String x:Key="SaveButton">Сохранить</v:String>
     <v:String x:Key="Sensitizer">Сенсибилизатор:</v:String>
     <v:String x:Key="SensitizerDose">Доля сенсибилизатора:</v:String>
-    <v:String x:Key="About1stPart">WIP</v:String>
-    <v:String x:Key="About2ndPart">WIP</v:String>
-    <v:String x:Key="About3rdPart">WIP</v:String>
+    <v:String x:Key="About1stPart">Данное приложение позволяет вычислить долю каждого из двух (трех) компонентов смесевого взрывчатого вещества, имеющего нулевой кислородный баланс.</v:String>
+    <v:String x:Key="About2ndPart">Чтобы получить результат, выберите горючее, окислитель и (опционально) третий компонент, затем нажмите на ккнопку "Вычислить".</v:String>
+    <v:String x:Key="About3rdPart">Приложение не является коммерческим и служит только демонстрационным целям.</v:String>
     <v:String x:Key="Language">Язык</v:String>
     
 

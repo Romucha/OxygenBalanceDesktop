@@ -65,6 +65,7 @@
             <Setter Property="TextAlignment" Value="Left"/>
             <Setter Property="Grid.ColumnSpan" Value="2"/>
             <Setter Property="Width" Value="{Binding ElementName=AboutWindowName, Path=Width}"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
         </Style.Setters>
     </Style>
 </ResourceDictionary>
