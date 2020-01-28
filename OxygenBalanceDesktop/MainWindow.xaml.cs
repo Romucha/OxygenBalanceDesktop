@@ -272,9 +272,12 @@ namespace OxygenBalanceDesktop
                 //make new list of explosives
                 Explosives.CreateList(System.Threading.Thread.CurrentThread.CurrentUICulture);
                 //recreate all comboboxes
-                Fuel.ItemsSource = new ObservableCollection<string>(Explosives.ChemicalSubstances.Where(c => c.Balance < 0.0).Select(c => c.Name));
-                Oxidizer.ItemsSource = new ObservableCollection<string>(Explosives.ChemicalSubstances.Where(c => c.Balance > 0.0).Select(c => c.Name));
-                ThirdOne.ItemsSource = new List<string>(Explosives.ChemicalSubstances.Select(c => c.Name));
+                FuelList = new ObservableCollection<string>(Explosives.ChemicalSubstances.Where(c => c.Balance < 0.0).Select(c => c.Name));
+                Fuel.ItemsSource = FuelList;
+                OxidizerList = new ObservableCollection<string>(Explosives.ChemicalSubstances.Where(c => c.Balance > 0.0).Select(c => c.Name));
+                Oxidizer.ItemsSource = OxidizerList;
+                ThirdList = new List<string>(Explosives.ChemicalSubstances.Select(c => c.Name));
+                ThirdOne.ItemsSource = ThirdList;
             }            
         }
     }
