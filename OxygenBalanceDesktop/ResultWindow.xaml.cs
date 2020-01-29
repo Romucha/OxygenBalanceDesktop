@@ -26,6 +26,7 @@ namespace OxygenBalanceDesktop
             this.Close();
         }
 
+        //open save form dialog to save results
         private void ResultSave(object sender, EventArgs e)
         {
             //create save file dialog
@@ -48,7 +49,7 @@ namespace OxygenBalanceDesktop
                 output += OxidizerInfo.Content + "\n";
                 output += OxidizerDose.Content + "\n";
                 //add info about third component if it exists
-                if (ThirdInfo.Content != "")
+                if (ThirdInfo.Content.ToString() != "")
                 {
                     output += ThirdInfo.Content + "\n";
                     output += ThirdDose.Content + "\n";

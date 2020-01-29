@@ -40,102 +40,77 @@ namespace OxygenBalanceDesktop
         private ObservableCollection<string> OxidizerList { get; set; }
 
         //third component list
-        //was made a list to get proper sort methods
+        //was made a list to get proper sort method
         List<string> ThirdList { get; set; }
 
         public MainWindow()
         {
             InitializeComponent();
-            FuelList = new ObservableCollection<string>(Explosives.ChemicalSubstances.Where(c => c.Balance < 0.0).Select(c => c.Name));
-            Fuel.ItemsSource = FuelList;
-            OxidizerList = new ObservableCollection<string>(Explosives.ChemicalSubstances.Where(c => c.Balance > 0.0).Select(c => c.Name));
-            Oxidizer.ItemsSource = OxidizerList;
-            ThirdList = new List<string>(Explosives.ChemicalSubstances.Select(c => c.Name));
-            ThirdOne.ItemsSource = ThirdList;
+            InitializeLists();
+            RussianSwitch.Click += ResetClick;
+            RussianSwitch.Click += SwitchCulture;
+            EnglishSwitch.Click += ResetClick;
+            EnglishSwitch.Click += SwitchCulture;
+
 
             //setting default language
             var path = "Resources/LocalDictionary." + System.Threading.Thread.CurrentThread.CurrentUICulture.Name + ".xaml";
             this.Resources = new ResourceDictionary() { Source = new Uri(path, UriKind.Relative) };
         }
 
-        //selection of 1st element
-        private void FuelSelected(object sender, RoutedEventArgs e)
-        {    
+        //selection of 1st and 2nd element
+        private void ElementSelected(object sender, RoutedEventArgs e)
+        {
+            //our current combobox
+            var chosenBox = (ComboBox)sender;
+            //item we selected
+            if (chosenBox.SelectedItem == null)
+                return;
+            string chosenElement = chosenBox.SelectedItem.ToString();
             //if there same selected items third component and list get nullified            
-            if (Fuel.SelectedItem == ThirdOne.SelectedItem)
+            if (ThirdOne.SelectedItem != null && chosenElement == ThirdOne.SelectedItem.ToString())
             {
                 ThirdOne.SelectedIndex = -1;
                 ThirdShow.Content = null;
                 ThirdCur = null;
-                
+
             }
-            ThirdList.Remove((string)Fuel.SelectedItem);
-            //check if FuelCur is not null
-            if (FuelCur != null)
+            ThirdList.Remove(chosenElement);
+            //buffer that can be either FuelCur or OxidizerCur
+            var bufCur = (chosenBox == Fuel) ? FuelCur : OxidizerCur;
+            //check if buffer is not null
+            if (bufCur != null)
             {
                 //then check if third list doesn't contain FuelCur
-                if (!ThirdList.Contains(FuelCur.Name))
+                if (!ThirdList.Contains(bufCur.Name))
                 {
                     //add to third list
-                    ThirdList.Add(FuelCur.Name);                    
+                    ThirdList.Add(bufCur.Name);
                 }
             }
 
             //try to get substance from list and store it in variable
-            if (Fuel.SelectedItem != null)
+            if (chosenElement != null)
             {
-                Explosives.TryGetValue(Fuel.SelectedItem.ToString(), out ChemicalSubstance buf);
-                FuelCur = buf;
+                Explosives.TryGetValue(chosenElement, out ChemicalSubstance buf);
+                bufCur = buf;
 
                 //show the chosen option
-                FuelShow.Content = buf.ToString();
+                ((chosenBox == Fuel) ? FuelShow : OxidizerShow).Content = buf.ToString();
 
                 //remove new FuelCur from third list
-                ThirdList.Remove(FuelCur.Name);
+                ThirdList.Remove(bufCur.Name);
                 //sort third list to get proper view
                 ThirdList.Sort();
                 ThirdOne.ItemsSource = new List<string>(ThirdList);
-            }
-        }
-
-        //selection of 2nd element
-        private void OxidizerSelected(object sender, RoutedEventArgs e)
-        {
-            //if there same selected items third component and list get nullified            
-            if (Oxidizer.SelectedItem == ThirdOne.SelectedItem)
-            {
-                ThirdOne.SelectedIndex = -1;
-                ThirdShow.Content = null;
-                ThirdCur = null;                
-            }
-            ThirdList.Remove((string)Oxidizer.SelectedItem);
-            //check if OxidizerCur is not null
-            if (OxidizerCur != null)
-            {
-                //then check if third list doesn't contain OxidizerCur
-                if (!ThirdList.Contains(OxidizerCur.Name))
-                {
-                    //add to third list
-                    ThirdList.Add(OxidizerCur.Name);
-                }
+                //set new value of FuelCur or OxidizerCur
+                if (chosenBox == Fuel)
+                    FuelCur = bufCur;
+                else
+                    OxidizerCur = bufCur;
             }
 
-            //try to get substance from list and store it in variable
-            if (Oxidizer.SelectedItem != null)
-            {
-                Explosives.TryGetValue(Oxidizer.SelectedItem.ToString(), out ChemicalSubstance buf);
-                OxidizerCur = buf;
-
-                //show the chosen option
-                OxidizerShow.Content = buf.ToString();
-
-                //remove new OxidizerCur from third list
-                ThirdList.Remove(OxidizerCur.Name);
-                //sort third list to get proper view
-                ThirdList.Sort();
-                ThirdOne.ItemsSource = new List<string>(ThirdList);
-            }
-        }
+        }               
 
         //selection of 3rd element
         private void ThirdSelected(object sender, RoutedEventArgs e)
@@ -210,8 +185,8 @@ namespace OxygenBalanceDesktop
                 //third component (optional)
                 if (ThirdCur != null && ThirdDose != 0.0)
                 {
-                    resultWindow.ThirdInfo.Content = (ThirdCur.Balance > 0.0) ? Resources["Phlegmatizer"] : Resources["Sensitizer"] + "\n" + ThirdCur.ToString();
-                    resultWindow.ThirdDose.Content = (ThirdCur.Balance > 0.0) ? Resources["PhlegmatizerDose"] : Resources["SensitizerDose"] + "\n" + string.Format($"{d:0.0000}") + "%";
+                    resultWindow.ThirdInfo.Content = ((ThirdCur.Balance > 0.0) ? Resources["Phlegmatizer"] : Resources["Sensitizer"]) + "\n" + ThirdCur.ToString();
+                    resultWindow.ThirdDose.Content = ((ThirdCur.Balance > 0.0) ? Resources["PhlegmatizerDose"] : Resources["SensitizerDose"]) + "\n" + string.Format($"{d:0.0000}") + "%";
                 }
 
                 //show it
@@ -268,17 +243,22 @@ namespace OxygenBalanceDesktop
                 System.Threading.Thread.CurrentThread.CurrentUICulture = new CultureInfo(menu.Tag.ToString());
                 string path = "Resources/LocalDictionary" + (menu.Tag.ToString() == "ru-RU" ? ".ru-RU" : ".en-US") + ".xaml";
                 this.Resources = new ResourceDictionary() { Source = new Uri(path, UriKind.Relative) };
-                ResetClick(sender, e);
                 //make new list of explosives
                 Explosives.CreateList(System.Threading.Thread.CurrentThread.CurrentUICulture);
                 //recreate all comboboxes
-                FuelList = new ObservableCollection<string>(Explosives.ChemicalSubstances.Where(c => c.Balance < 0.0).Select(c => c.Name));
-                Fuel.ItemsSource = FuelList;
-                OxidizerList = new ObservableCollection<string>(Explosives.ChemicalSubstances.Where(c => c.Balance > 0.0).Select(c => c.Name));
-                Oxidizer.ItemsSource = OxidizerList;
-                ThirdList = new List<string>(Explosives.ChemicalSubstances.Select(c => c.Name));
-                ThirdOne.ItemsSource = ThirdList;
+                InitializeLists();
             }            
+        }
+
+        //initialize all three comboboxes of explosives at the beginning and when language is switched
+        public void InitializeLists()
+        {
+            FuelList = new ObservableCollection<string>(Explosives.ChemicalSubstances.Where(c => c.Balance < 0.0).Select(c => c.Name));
+            Fuel.ItemsSource = FuelList;
+            OxidizerList = new ObservableCollection<string>(Explosives.ChemicalSubstances.Where(c => c.Balance > 0.0).Select(c => c.Name));
+            Oxidizer.ItemsSource = OxidizerList;
+            ThirdList = new List<string>(Explosives.ChemicalSubstances.Select(c => c.Name));
+            ThirdOne.ItemsSource = ThirdList;
         }
     }
 }

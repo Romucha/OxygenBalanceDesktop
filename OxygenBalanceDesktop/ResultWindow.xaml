@@ -6,11 +6,11 @@
         xmlns:res="clr-namespace:OxygenBalanceDesktop"
         xmlns:local="clr-namespace:OxygenBalanceDesktop"
         mc:Ignorable="d"
-        Title="{DynamicResource ResultTitle}" Height="500" Width="350">
+        Title="{DynamicResource ResultTitle}" Height="500" Width="400">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="0.75*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.25*"/>
