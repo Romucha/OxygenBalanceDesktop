@@ -260,5 +260,20 @@ namespace OxygenBalanceDesktop
             ThirdList = new List<string>(Explosives.ChemicalSubstances.Select(c => c.Name));
             ThirdOne.ItemsSource = ThirdList;
         }
+
+        private void AddClick(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void RemoveClick(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void RestoreClick(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

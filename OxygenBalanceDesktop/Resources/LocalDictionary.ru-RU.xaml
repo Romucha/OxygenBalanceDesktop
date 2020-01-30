@@ -28,6 +28,10 @@
     <v:String x:Key="About2ndPart">Чтобы получить результат, выберите горючее, окислитель и (опционально) третий компонент, затем нажмите на ккнопку "Вычислить".</v:String>
     <v:String x:Key="About3rdPart">Приложение не является коммерческим и служит только демонстрационным целям.</v:String>
     <v:String x:Key="Language">Язык</v:String>
-    
+    <v:String x:Key="EditButton">Редактировать</v:String>
+    <v:String x:Key="AddButton">Добавить элемент</v:String>
+    <v:String x:Key="RemoveButton">Удалить элемент</v:String>
+    <v:String x:Key="RestroreButton">Восстановить список элементов</v:String>
+
 
 </ResourceDictionary>

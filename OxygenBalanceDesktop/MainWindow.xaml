@@ -31,6 +31,11 @@
                 <MenuItem Header="English" Tag="en-US" Name="EnglishSwitch"/>
                 <MenuItem Header="Русский" Tag="ru-RU" Name="RussianSwitch"/>
             </MenuItem>
+            <MenuItem Header="{DynamicResource EditButton}">
+                <MenuItem Header="{DynamicResource AddButton}" Click="AddClick"/>
+                <MenuItem Header="{DynamicResource RemoveButton}" Click="RemoveClick"/>
+                <MenuItem Header="{DynamicResource RestroreButton}" Click="RestoreClick"/>
+            </MenuItem>
             <MenuItem Header="{DynamicResource CloseButton}" Click="CloseClick"/>
         </Menu>
         <Label Content="{DynamicResource ChooseFuel}" Grid.Row="1" Grid.Column="0" Style="{StaticResource LabelStyle}"/>
