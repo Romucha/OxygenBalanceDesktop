@@ -51,6 +51,8 @@ namespace OxygenBalanceDesktop
             RussianSwitch.Click += SwitchCulture;
             EnglishSwitch.Click += ResetClick;
             EnglishSwitch.Click += SwitchCulture;
+            RestoreMenu.Click += ResetClick;
+            RestoreMenu.Click += RestoreClick;
 
 
             //setting default language
@@ -266,14 +268,19 @@ namespace OxygenBalanceDesktop
 
         }
 
+        //open window to remove elements from list of explosives
         private void RemoveClick(object sender, RoutedEventArgs e)
         {
-
+            RemoveWindow removeWindow = new RemoveWindow();
+            removeWindow.Owner = this;
+            removeWindow.Resources = this.Resources;
+            removeWindow.ShowDialog();
         }
 
         private void RestoreClick(object sender, RoutedEventArgs e)
         {
-
+            Explosives.RestoreTable(System.Threading.Thread.CurrentThread.CurrentUICulture);
+            InitializeLists();
         }
     }
 }

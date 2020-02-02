@@ -16,7 +16,7 @@
             <Setter Property="Margin" Value="0,0,0,0"/>
         </Style.Setters>
     </Style>
-    <Style x:Key=":ComboBoxStyle" TargetType="ComboBox">
+    <Style x:Key="ComboBoxStyle" TargetType="ComboBox">
         <Style.Setters>
             <Setter Property="MinWidth" Value="100"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>

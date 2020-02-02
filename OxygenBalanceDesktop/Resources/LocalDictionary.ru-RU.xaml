@@ -32,6 +32,7 @@
     <v:String x:Key="AddButton">Добавить элемент</v:String>
     <v:String x:Key="RemoveButton">Удалить элемент</v:String>
     <v:String x:Key="RestroreButton">Восстановить список элементов</v:String>
+    <v:String x:Key="ChooseElementToRemove">Выберите элемент, который нужно удалить:</v:String>
 
 
 </ResourceDictionary>

@@ -1,0 +1,25 @@
+﻿<Window x:Class="OxygenBalanceDesktop.RemoveWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:OxygenBalanceDesktop"
+        mc:Ignorable="d"
+        Title="{DynamicResource RemoveButton}" Height="300" Width="250">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="0.5*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="{DynamicResource ChooseElementToRemove}" Style="{DynamicResource TextBlockStyle}" Padding="0" FontSize="12" TextAlignment="Center" Grid.Row="0"/>
+        <ComboBox Style="{DynamicResource ComboBoxStyle}" Name="RemoveList" Grid.Row="1" SelectionChanged="ElementSelected"/>
+        <Label Style="{DynamicResource LabelStyle}" Name="RemoveLabel" Grid.Row="2"/>
+        <Button Content="{DynamicResource RemoveButton}" Style="{DynamicResource ButtonStyle}" Name="RemoveButton" Click="RemoveClick" Grid.Row="3"/>
+
+    </Grid>
+</Window>

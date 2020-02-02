@@ -34,7 +34,7 @@
             <MenuItem Header="{DynamicResource EditButton}">
                 <MenuItem Header="{DynamicResource AddButton}" Click="AddClick"/>
                 <MenuItem Header="{DynamicResource RemoveButton}" Click="RemoveClick"/>
-                <MenuItem Header="{DynamicResource RestroreButton}" Click="RestoreClick"/>
+                <MenuItem Header="{DynamicResource RestroreButton}" Name="RestoreMenu"/>
             </MenuItem>
             <MenuItem Header="{DynamicResource CloseButton}" Click="CloseClick"/>
         </Menu>
@@ -47,9 +47,9 @@
         <Label Grid.Row="6" Grid.Column="1" Style="{StaticResource LabelStyle}" Name="ThirdShow"/>
         <TextBox Grid.Row="7" Grid.Column="1" Style="{StaticResource TextBoxStyle}" Text="0.00" Name="ThirdDoseShow" PreviewTextInput="ThirdTyped"/>
         <Button Content="{DynamicResource CalculateButton}" Name="CalculateButton" Grid.ColumnSpan="2" Grid.Row="9" Style="{StaticResource ButtonStyle}" Click="CalculateBalance"/>
-        <ComboBox Name="Fuel" Grid.Row="2" Grid.Column="0" Style="{StaticResource :ComboBoxStyle}" SelectionChanged="ElementSelected"/>
-        <ComboBox Name="Oxidizer" Grid.Row="4" Grid.Column="0" Style="{StaticResource :ComboBoxStyle}" SelectionChanged="ElementSelected"/>
-        <ComboBox Name="ThirdOne" Grid.Row="6" Grid.Column="0" Style="{StaticResource :ComboBoxStyle}" SelectionChanged="ThirdSelected"/>
+        <ComboBox Name="Fuel" Grid.Row="2" Grid.Column="0" Style="{StaticResource ComboBoxStyle}" SelectionChanged="ElementSelected"/>
+        <ComboBox Name="Oxidizer" Grid.Row="4" Grid.Column="0" Style="{StaticResource ComboBoxStyle}" SelectionChanged="ElementSelected"/>
+        <ComboBox Name="ThirdOne" Grid.Row="6" Grid.Column="0" Style="{StaticResource ComboBoxStyle}" SelectionChanged="ThirdSelected"/>
         <Slider Grid.Row="8" Grid.Column="0" Style="{StaticResource SliderStyle}" Name="ThirdSlider" ValueChanged="DoseChanged"/>
     </Grid>
 </Window>
