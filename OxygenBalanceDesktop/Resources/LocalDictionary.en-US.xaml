@@ -33,5 +33,7 @@
     <v:String x:Key="RemoveButton">Remove element</v:String>
     <v:String x:Key="RestroreButton">Restore list of elements</v:String>
     <v:String x:Key="ChooseElementToRemove">Choose the element you want to delete:</v:String>
+    <v:String x:Key="RemoveMessageStart">Element "</v:String>
+    <v:String x:Key="RemoveMessageEnd">" has been removed successfully.</v:String>
 
 </ResourceDictionary>

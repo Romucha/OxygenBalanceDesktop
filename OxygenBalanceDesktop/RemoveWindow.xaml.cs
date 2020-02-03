@@ -47,14 +47,12 @@ namespace OxygenBalanceDesktop
         //remove element from file and lists
         private void RemoveClick(object sender, RoutedEventArgs e)
         {
-            var path = "Table." + ((System.Threading.Thread.CurrentThread.CurrentUICulture.Name == "ru-RU") ? "ru-RU" : "en-US") + ".txt";
-            var remove = File.ReadAllLines(path, Encoding.Default).Where(s => !s.Contains(RemoveElementName));
-            File.WriteAllLines(path, remove, Encoding.Default);
-            Explosives.CreateList(System.Threading.Thread.CurrentThread.CurrentUICulture);
+            Explosives.RemoveElement(System.Threading.Thread.CurrentThread.CurrentUICulture, RemoveElementName);
             RemoveList.SelectedItem = null;
             RemoveList.ItemsSource = new ObservableCollection<string>(Explosives.ChemicalSubstances.Select(c => c.Name));
             RemoveLabel.Content = null;
             ((MainWindow)this.Owner).InitializeLists();
+            MessageBox.Show(Resources["RemoveMessageStart"] + RemoveElementName + Resources["RemoveMessageEnd"]);
         }
     }
 }

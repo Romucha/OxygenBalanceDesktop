@@ -33,6 +33,8 @@
     <v:String x:Key="RemoveButton">Удалить элемент</v:String>
     <v:String x:Key="RestroreButton">Восстановить список элементов</v:String>
     <v:String x:Key="ChooseElementToRemove">Выберите элемент, который нужно удалить:</v:String>
+    <v:String x:Key="RemoveMessageStart">Элемент "</v:String>
+    <v:String x:Key="RemoveMessageEnd">" был успешно удален</v:String>
 
 
 </ResourceDictionary>
