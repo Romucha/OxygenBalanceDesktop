@@ -69,4 +69,27 @@
             <Setter Property="TextWrapping" Value="Wrap"/>
         </Style.Setters>
     </Style>
+    <Style x:Key="GroupBoxStyle" TargetType="GroupBox">
+        <Style.Setters>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+            <Setter Property="Header" Value=""/>
+        </Style.Setters>
+    </Style>
+    <Style x:Key="RadioButtonStyle" TargetType="RadioButton">
+        <Style.Setters>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="12"/>
+        </Style.Setters>
+    </Style>
+    <Style x:Key="TextBlockStyle12" TargetType="TextBlock">
+        <Style.Setters>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="TextAlignment" Value="Justify"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+        </Style.Setters>
+    </Style>
 </ResourceDictionary>

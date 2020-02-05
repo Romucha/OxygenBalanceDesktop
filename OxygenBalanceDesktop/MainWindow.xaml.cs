@@ -265,7 +265,10 @@ namespace OxygenBalanceDesktop
 
         private void AddClick(object sender, RoutedEventArgs e)
         {
-
+            AddWindow addWindow = new AddWindow();
+            addWindow.Owner = this;
+            addWindow.Resources = this.Resources;
+            addWindow.ShowDialog();
         }
 
         //open window to remove elements from list of explosives

@@ -35,6 +35,9 @@
     <v:String x:Key="ChooseElementToRemove">Выберите элемент, который нужно удалить:</v:String>
     <v:String x:Key="RemoveMessageStart">Элемент "</v:String>
     <v:String x:Key="RemoveMessageEnd">" был успешно удален</v:String>
-
+    <v:String x:Key="AddTextBoxIntroduction">Новый элемент можно добавить, введя его наименование и формулу либо кислородный баланс.</v:String>
+    <v:String x:Key="BalanceRadioButton">Кислородный баланс:</v:String>
+    <v:String x:Key="FormulaRadioButton">Формула:</v:String>
+    <v:String x:Key="AddName">Введите наименование:</v:String>
 
 </ResourceDictionary>

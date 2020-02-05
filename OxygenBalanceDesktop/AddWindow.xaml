@@ -5,17 +5,39 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OxygenBalanceDesktop"
         mc:Ignorable="d"
-        Title="AddWindow" Height="300" Width="200">
+        Title="{DynamicResource AddButton}" Height="400" Width="350">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="0.5*"/>
         </Grid.RowDefinitions>
-        <TextBox HorizontalAlignment="Left" Margin="66,97,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBlock HorizontalAlignment="Left" Margin="79,41,0,0" Text="TextBlock" TextWrapping="Wrap" VerticalAlignment="Top"/>
-
+        <TextBlock Text="{DynamicResource AddTextBoxIntroduction}" Style="{DynamicResource TextBlockStyle12}" Grid.Row="0" Grid.ColumnSpan="2"/>
+        <GroupBox Style="{DynamicResource GroupBoxStyle}" Grid.Row="1" Grid.ColumnSpan="2">
+            <StackPanel>
+                <TextBlock Style="{DynamicResource TextBlockStyle12}" Text="{DynamicResource AddName}"/>
+                <TextBox Style="{DynamicResource TextBoxStyle}" Margin="10"/>
+            </StackPanel>
+        </GroupBox>
+        <GroupBox Style="{DynamicResource GroupBoxStyle}" Grid.Row="2" Grid.Column="0">
+            <StackPanel>
+                <RadioButton Style="{DynamicResource RadioButtonStyle}" Content="{DynamicResource BalanceRadioButton}"/>
+                <TextBox Style="{DynamicResource TextBoxStyle}" Margin="10"/>
+            </StackPanel>
+        </GroupBox>
+        <GroupBox Style="{DynamicResource GroupBoxStyle}" Grid.Row="2" Grid.Column="1">
+            <StackPanel>
+                <RadioButton Style="{DynamicResource RadioButtonStyle}" Content="{DynamicResource FormulaRadioButton}"/>
+                <TextBox Style="{DynamicResource TextBoxStyle}" Margin="10"/>
+            </StackPanel>
+        </GroupBox>
+        <Label Style="{DynamicResource LabelStyle}" Grid.Row="3" Grid.ColumnSpan="2"/>
+        <Button Style="{DynamicResource ButtonStyle}" Content="{DynamicResource AddButton}" Grid.Row="4" Grid.ColumnSpan="2"/>        
     </Grid>
 </Window>
