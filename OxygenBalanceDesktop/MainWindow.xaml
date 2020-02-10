@@ -45,7 +45,7 @@
         <Label Grid.Row="2" Grid.Column="1" Style="{StaticResource LabelStyle}" Name="FuelShow"/>
         <Label Grid.Row="4" Grid.Column="1" Style="{StaticResource LabelStyle}" Name="OxidizerShow"/>
         <Label Grid.Row="6" Grid.Column="1" Style="{StaticResource LabelStyle}" Name="ThirdShow"/>
-        <TextBox Grid.Row="7" Grid.Column="1" Style="{StaticResource TextBoxStyle}" Text="0.00" Name="ThirdDoseShow" PreviewTextInput="ThirdTyped"/>
+        <TextBox Grid.Row="7" Grid.Column="1" Style="{StaticResource TextBoxStyle}" Name="ThirdDoseShow" PreviewTextInput="ThirdTyped"/>
         <Button Content="{DynamicResource CalculateButton}" Name="CalculateButton" Grid.ColumnSpan="2" Grid.Row="9" Style="{StaticResource ButtonStyle}" Click="CalculateBalance"/>
         <ComboBox Name="Fuel" Grid.Row="2" Grid.Column="0" Style="{StaticResource ComboBoxStyle}" SelectionChanged="ElementSelected"/>
         <ComboBox Name="Oxidizer" Grid.Row="4" Grid.Column="0" Style="{StaticResource ComboBoxStyle}" SelectionChanged="ElementSelected"/>

@@ -43,6 +43,11 @@ namespace OxygenBalanceDesktop
         //was made a list to get proper sort method
         List<string> ThirdList { get; set; }
 
+        //current culture and its decimal separator
+        internal CultureInfo Culture { get; set; }
+
+        internal string DotComma { get; set; }
+
         public MainWindow()
         {
             InitializeComponent();
@@ -58,6 +63,14 @@ namespace OxygenBalanceDesktop
             //setting default language
             var path = "Resources/LocalDictionary." + System.Threading.Thread.CurrentThread.CurrentUICulture.Name + ".xaml";
             this.Resources = new ResourceDictionary() { Source = new Uri(path, UriKind.Relative) };
+
+            //set default dose of third element
+            Culture = System.Threading.Thread.CurrentThread.CurrentUICulture;
+            DotComma = Culture.NumberFormat.NumberDecimalSeparator;
+            ThirdDoseShow.Text = string.Format(Culture, "{0:F2}", ThirdSlider.Value);
+
+            ThirdSlider.Minimum = 0F;
+            ThirdSlider.Maximum = 100F;
         }
 
         //selection of 1st and 2nd element
@@ -129,29 +142,26 @@ namespace OxygenBalanceDesktop
         //slider changes are shown in textbox
         private void DoseChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            ThirdDoseShow.Text= $"{ThirdSlider.Value:0.00}";
+            ThirdDoseShow.Text= string.Format(Culture, "{0:F2}", ThirdSlider.Value);
             ThirdDose = ThirdSlider.Value;
         }
 
         //make only digits and "." inputable
         private void ThirdTyped(object sender, TextCompositionEventArgs e)
         {
-            if (!(Char.IsDigit(e.Text, 0) || (e.Text == ".") && (!ThirdDoseShow.Text.Contains(".") && ThirdDoseShow.Text.Length != 0)))
+            var textBox = (TextBox)sender;
+            if (!(char.IsDigit(e.Text, 0) || (e.Text == DotComma) && (!textBox.Text.Contains(DotComma) && textBox.Text.Length != 0)))
             {
                 e.Handled = true;
                 //check if value is between 0 and 100
-                if (double.Parse(ThirdDoseShow.Text) > 100.00)
+                if (textBox.Text == "")
                 {
-                    ThirdDoseShow.Text = "100.00";
-                }
-
-                if (double.Parse(ThirdDoseShow.Text) < 0.0)
-                {
-                    ThirdDoseShow.Text = "0.00";
+                    textBox.Text = string.Format(Culture, "{0:F2}", 0);
                 }
                 //make slider correlate with textbox
-                ThirdSlider.Value = double.Parse(ThirdDoseShow.Text);
-                ThirdDose = double.Parse(ThirdDoseShow.Text);
+                var resultValue = double.Parse(textBox.Text, Culture);
+                ThirdSlider.Value = resultValue;
+                ThirdDose = resultValue;
             }
         }
 
@@ -165,30 +175,32 @@ namespace OxygenBalanceDesktop
                 //balance of components
                 var b1 = FuelCur.Balance;
                 var b2 = OxidizerCur.Balance;
-                var b3 = (ThirdCur == null) ? 0.0 : ThirdCur.Balance;
+                var b3 = (ThirdCur == null) ? 0F : ThirdCur.Balance;
                 //dose of third component
-                var d = (ThirdCur == null) ? 0.0 : ThirdDose;
+                var d = ((ThirdCur == null) ? 0F : ThirdDose);
                 //dose of first component
-                var x = ((100 - d) * b2 + d * b3) / (b2 - b1);
+                var x = ((100F - d) * b2 + d * b3) / (b2 - b1);
                 //dose of second component
-                var y = 100 - d - x;
+                var y = (100F - d - x);
                 //create new window of results
-                ResultWindow resultWindow = new ResultWindow();
-                resultWindow.Owner = this;
-                resultWindow.Resources = this.Resources;
+                ResultWindow resultWindow = new ResultWindow
+                {
+                    Owner = this,
+                    Resources = this.Resources
+                };
 
                 //fill its labels
                 //fuel
                 resultWindow.FuelInfo.Content = Resources["FuelInfo"] + "\n" + FuelCur.ToString();
-                resultWindow.FuelDose.Content = Resources["FuelDose"] + "\n" + string.Format($"{x:0.0000}") + "%";
+                resultWindow.FuelDose.Content = Resources["FuelDose"] + "\n" + string.Format($"{x:F4}") + "%";
                 //oxidizer
                 resultWindow.OxidizerInfo.Content = Resources["OxidizerInfo"] + "\n" + OxidizerCur.ToString();
-                resultWindow.OxidizerDose.Content = Resources["OxidizerDose"] + "\n" + string.Format($"{y:0.0000}") + "%";
+                resultWindow.OxidizerDose.Content = Resources["OxidizerDose"] + "\n" + string.Format($"{y:F4}") + "%";
                 //third component (optional)
-                if (ThirdCur != null && ThirdDose != 0.0)
+                if (ThirdCur != null && ThirdDose != 0F)
                 {
-                    resultWindow.ThirdInfo.Content = ((ThirdCur.Balance > 0.0) ? Resources["Phlegmatizer"] : Resources["Sensitizer"]) + "\n" + ThirdCur.ToString();
-                    resultWindow.ThirdDose.Content = ((ThirdCur.Balance > 0.0) ? Resources["PhlegmatizerDose"] : Resources["SensitizerDose"]) + "\n" + string.Format($"{d:0.0000}") + "%";
+                    resultWindow.ThirdInfo.Content = ((ThirdCur.Balance > 0F) ? Resources["Phlegmatizer"] : Resources["Sensitizer"]) + "\n" + ThirdCur.ToString();
+                    resultWindow.ThirdDose.Content = ((ThirdCur.Balance > 0F) ? Resources["PhlegmatizerDose"] : Resources["SensitizerDose"]) + "\n" + string.Format($"{d:F4}") + "%";
                 }
 
                 //show it
@@ -240,13 +252,14 @@ namespace OxygenBalanceDesktop
         {
             //change language if new one is different from previous
             var menu = (MenuItem)sender;
-            if (System.Threading.Thread.CurrentThread.CurrentUICulture.Name != menu.Tag.ToString())
+            if (Culture.Name != menu.Tag.ToString())
             {
-                System.Threading.Thread.CurrentThread.CurrentUICulture = new CultureInfo(menu.Tag.ToString());
+                Culture = new CultureInfo(menu.Tag.ToString());
+                DotComma = Culture.NumberFormat.NumberDecimalSeparator;
                 string path = "Resources/LocalDictionary" + (menu.Tag.ToString() == "ru-RU" ? ".ru-RU" : ".en-US") + ".xaml";
                 this.Resources = new ResourceDictionary() { Source = new Uri(path, UriKind.Relative) };
                 //make new list of explosives
-                Explosives.CreateList(System.Threading.Thread.CurrentThread.CurrentUICulture);
+                Explosives.CreateList(Culture);
                 //recreate all comboboxes
                 InitializeLists();
             }            

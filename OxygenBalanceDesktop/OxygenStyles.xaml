@@ -30,8 +30,6 @@
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="Margin" Value="0,0,0,0"/>
-            <Setter Property="Minimum" Value="0"/>
-            <Setter Property="Maximum" Value="100"/>
         </Style.Setters>
     </Style>
     <Style x:Key="TextBoxStyle" TargetType="TextBox">
@@ -90,6 +88,7 @@
             <Setter Property="FontSize" Value="12"/>
             <Setter Property="TextAlignment" Value="Justify"/>
             <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="MinWidth" Value="50"/>
         </Style.Setters>
     </Style>
 </ResourceDictionary>

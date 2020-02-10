@@ -36,7 +36,7 @@
     <v:String x:Key="RemoveMessageStart">Element "</v:String>
     <v:String x:Key="RemoveMessageEnd">" has been removed successfully.</v:String>
     <v:String x:Key="AddTextBoxIntroduction">You can add new element by entering its name and either weight or formula.</v:String>
-    <v:String x:Key="BalanceRadioButton">Enter weight:</v:String>
-    <v:String x:Key="FormulaRadioButton">Enter formula:</v:String>
+    <v:String x:Key="BalanceRadioButton">Balance:</v:String>
+    <v:String x:Key="FormulaRadioButton">Formula:</v:String>
     <v:String x:Key="AddName">Enter name:</v:String>
 </ResourceDictionary>

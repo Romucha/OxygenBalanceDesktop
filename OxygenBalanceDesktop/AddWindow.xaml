@@ -22,22 +22,22 @@
         <GroupBox Style="{DynamicResource GroupBoxStyle}" Grid.Row="1" Grid.ColumnSpan="2">
             <StackPanel>
                 <TextBlock Style="{DynamicResource TextBlockStyle12}" Text="{DynamicResource AddName}"/>
-                <TextBox Style="{DynamicResource TextBoxStyle}" Margin="10"/>
+                <TextBox Style="{DynamicResource TextBoxStyle}" Margin="10" Name="EnterName" PreviewTextInput="NameEntered"/>
             </StackPanel>
         </GroupBox>
         <GroupBox Style="{DynamicResource GroupBoxStyle}" Grid.Row="2" Grid.Column="0">
             <StackPanel>
-                <RadioButton Style="{DynamicResource RadioButtonStyle}" Content="{DynamicResource BalanceRadioButton}"/>
-                <TextBox Style="{DynamicResource TextBoxStyle}" Margin="10"/>
+                <RadioButton Style="{DynamicResource RadioButtonStyle}" Content="{DynamicResource BalanceRadioButton}" Name="RadioBalance" Click="BalanceClick"/>
+                <TextBox Style="{DynamicResource TextBoxStyle}" Margin="10" Name="EnterBalance" PreviewTextInput="BalanceEntered"/>
             </StackPanel>
         </GroupBox>
         <GroupBox Style="{DynamicResource GroupBoxStyle}" Grid.Row="2" Grid.Column="1">
             <StackPanel>
-                <RadioButton Style="{DynamicResource RadioButtonStyle}" Content="{DynamicResource FormulaRadioButton}"/>
-                <TextBox Style="{DynamicResource TextBoxStyle}" Margin="10"/>
+                <RadioButton Style="{DynamicResource RadioButtonStyle}" Content="{DynamicResource FormulaRadioButton}" Name="RadioFormula" Click="FormulaClick"/>
+                <TextBox Style="{DynamicResource TextBoxStyle}" Margin="10" Name="EnterFormula" PreviewTextInput="FormulaEntered"/>
             </StackPanel>
         </GroupBox>
-        <Label Style="{DynamicResource LabelStyle}" Grid.Row="3" Grid.ColumnSpan="2"/>
-        <Button Style="{DynamicResource ButtonStyle}" Content="{DynamicResource AddButton}" Grid.Row="4" Grid.ColumnSpan="2"/>        
+        <Label Style="{DynamicResource LabelStyle}" Grid.Row="3" Grid.ColumnSpan="2" Name="ShowLabel"/>
+        <Button Style="{DynamicResource ButtonStyle}" Content="{DynamicResource AddButton}" Grid.Row="4" Grid.ColumnSpan="2" Name="AddButton"/>        
     </Grid>
 </Window>
