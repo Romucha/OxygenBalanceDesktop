@@ -172,16 +172,8 @@ namespace OxygenBalanceDesktop
                 MessageBox.Show(Resources["ChooseComponentFirst"].ToString());
             else
             {
-                //balance of components
-                var b1 = FuelCur.Balance;
-                var b2 = OxidizerCur.Balance;
-                var b3 = (ThirdCur == null) ? 0F : ThirdCur.Balance;
-                //dose of third component
-                var d = ((ThirdCur == null) ? 0F : ThirdDose);
-                //dose of first component
-                var x = ((100F - d) * b2 + d * b3) / (b2 - b1);
-                //dose of second component
-                var y = (100F - d - x);
+                //get results
+                Explosives.GetResult(FuelCur.Balance, OxidizerCur.Balance, (ThirdCur == null) ? 0F : ThirdCur.Balance, ((ThirdCur == null) ? 0F : ThirdDose), out double x, out double y, out double z);
                 //create new window of results
                 ResultWindow resultWindow = new ResultWindow
                 {
@@ -200,7 +192,7 @@ namespace OxygenBalanceDesktop
                 if (ThirdCur != null && ThirdDose != 0F)
                 {
                     resultWindow.ThirdInfo.Content = ((ThirdCur.Balance > 0F) ? Resources["Phlegmatizer"] : Resources["Sensitizer"]) + "\n" + ThirdCur.ToString();
-                    resultWindow.ThirdDose.Content = ((ThirdCur.Balance > 0F) ? Resources["PhlegmatizerDose"] : Resources["SensitizerDose"]) + "\n" + string.Format($"{d:F4}") + "%";
+                    resultWindow.ThirdDose.Content = ((ThirdCur.Balance > 0F) ? Resources["PhlegmatizerDose"] : Resources["SensitizerDose"]) + "\n" + string.Format($"{z:F4}") + "%";
                 }
 
                 //show it

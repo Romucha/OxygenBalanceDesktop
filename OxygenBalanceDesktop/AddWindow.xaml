@@ -38,6 +38,6 @@
             </StackPanel>
         </GroupBox>
         <Label Style="{DynamicResource LabelStyle}" Grid.Row="3" Grid.ColumnSpan="2" Name="ShowLabel"/>
-        <Button Style="{DynamicResource ButtonStyle}" Content="{DynamicResource AddButton}" Grid.Row="4" Grid.ColumnSpan="2" Name="AddButton"/>        
+        <Button Style="{DynamicResource ButtonStyle}" Content="{DynamicResource AddButton}" Grid.Row="4" Grid.ColumnSpan="2" Name="AddButton" Click="AddClick"/>        
     </Grid>
 </Window>
