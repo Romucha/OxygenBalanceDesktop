@@ -37,8 +37,8 @@ namespace OxygenBalanceDesktop
             RadioFormula.IsChecked = false;
             EnterFormula.IsEnabled = false;
             //default values for balance and formula
-            BalanceCur = default;
-            FormulaCur = default;
+            BalanceCur = 0.0;
+            FormulaCur = null;
             //result button is disabled until we get out new element properly
             AddButton.IsEnabled = false;
             
@@ -52,8 +52,8 @@ namespace OxygenBalanceDesktop
             RadioFormula.IsChecked = false;
             EnterBalance.IsEnabled = true;
             EnterFormula.IsEnabled = false;
-            FormulaCur = default;
-            EnterFormula.Text = default;
+            FormulaCur = null;
+            EnterFormula.Text = null;
             AddButton.IsEnabled = false;
             ShowLabel.Content = null;
         }
@@ -66,8 +66,8 @@ namespace OxygenBalanceDesktop
             RadioBalance.IsChecked = false;
             EnterBalance.IsEnabled = false;
             EnterFormula.IsEnabled = true;
-            BalanceCur = default;
-            EnterBalance.Text = default;
+            BalanceCur = 0.0;
+            EnterBalance.Text = null;
             AddButton.IsEnabled = false;
             ShowLabel.Content = null;
         }
@@ -98,16 +98,18 @@ namespace OxygenBalanceDesktop
                 {
                     textBox.Text = string.Format(cult, "{0:F2}", 0);
                 }
-                BalanceCur = double.Parse(textBox.Text, cult) / 100;
+                BalanceCur = double.Parse(textBox.Text, cult);
                 try
                 {
                     ShowLabel.Content = (new ChemicalSubstance(NameCur, BalanceCur)).ToString();
                     if (NameCur != null)
+                    {
                         AddButton.IsEnabled = true;
+                    }
                 }
                 catch
                 {
-                    ShowLabel.Content = "Can't create element " + NameCur;
+                    ShowLabel.Content = "Can't create element \"" + NameCur + "\"";
                     AddButton.IsEnabled = false;
                 }
             }
@@ -122,31 +124,45 @@ namespace OxygenBalanceDesktop
             {
                 ShowLabel.Content = (new ChemicalSubstance(NameCur, FormulaCur)).ToString();
                 if (NameCur != null)
+                {
                     AddButton.IsEnabled = true;
+                }
             }
             catch
             {
-                ShowLabel.Content = "Can't create element " + NameCur;
+                ShowLabel.Content = "Can't create element \"" + NameCur + "\"";
                 AddButton.IsEnabled = false;
             }
         }
 
+        //add new element into list
+        //works weird for some reason
         private void AddClick(object sender, RoutedEventArgs e)
         {
             if (Explosives.ChemicalSubstances.Select(c => c.Name).Contains(NameCur))
             {
-                MessageBox.Show("Element " + NameCur + " already exist");
+                MessageBox.Show("Element \"" + NameCur + "\" already exists");
                 return;
-            }
-            if (FormulaCur == null)
-            {
-                Explosives.AddElementBalance(System.Threading.Thread.CurrentThread.CurrentUICulture, NameCur, BalanceCur);
             }
             else
             {
-                Explosives.AddElementFormula(System.Threading.Thread.CurrentThread.CurrentUICulture, NameCur, FormulaCur);
+                if ((bool)RadioBalance.IsChecked)
+                {
+                    Explosives.AddElementBalance(((MainWindow)this.Owner).Culture, NameCur, BalanceCur);
+                }
+                else
+                {
+                    Explosives.AddElementFormula(((MainWindow)this.Owner).Culture, NameCur, FormulaCur);
+                }                
+                MessageBox.Show("Element \"" + NameCur + "\" has been successfully added");
+                Explosives.CreateList(((MainWindow)this.Owner).Culture);
+                ((MainWindow)this.Owner).InitializeLists();
             }
-            MessageBox.Show("Element " + NameCur + " has been successfully created");
+        }
+
+        private void AddWindowClosing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Explosives.CreateList(((MainWindow)this.Owner).Culture);
             ((MainWindow)this.Owner).InitializeLists();
         }
     }

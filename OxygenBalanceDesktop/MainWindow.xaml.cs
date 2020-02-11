@@ -287,7 +287,7 @@ namespace OxygenBalanceDesktop
 
         private void RestoreClick(object sender, RoutedEventArgs e)
         {
-            Explosives.RestoreTable(System.Threading.Thread.CurrentThread.CurrentUICulture);
+            Explosives.RestoreTable(Culture);
             InitializeLists();
         }
     }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OxygenBalanceDesktop"
         mc:Ignorable="d"
-        Title="{DynamicResource AddButton}" Height="400" Width="350">
+        Title="{DynamicResource AddButton}" Height="400" Width="350" Closing="AddWindowClosing">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
