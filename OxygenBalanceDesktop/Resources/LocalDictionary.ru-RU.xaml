@@ -39,5 +39,7 @@
     <v:String x:Key="BalanceRadioButton">Кислородный баланс:</v:String>
     <v:String x:Key="FormulaRadioButton">Формула:</v:String>
     <v:String x:Key="AddName">Введите наименование:</v:String>
-
+    <v:String x:Key="FailedToCreateElement">Невозможно создать элемент </v:String>
+    <v:String x:Key="AlreadyExists"> уже существует.</v:String>
+    <v:String x:Key="SuccessfulyAdded"> был успешно добавлен.</v:String>
 </ResourceDictionary>

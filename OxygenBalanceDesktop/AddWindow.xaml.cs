@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -90,8 +90,12 @@ namespace OxygenBalanceDesktop
             var cult = ((MainWindow)this.Owner).Culture;
             var dot = cult.NumberFormat.NumberDecimalSeparator;
             var textBox = (TextBox)sender;
-            //rework to make it read negative values
-            if (!(Char.IsDigit(e.Text, 0) || (e.Text == dot) && (!textBox.Text.Contains(dot) && textBox.Text.Length != 0)))
+            var numberPattern = string.Format(@"(^\-?)\d+");
+            if (
+                !(e.Text[0] == '-' && textBox.Text.Length == 0) &&//negative
+                !(char.IsDigit(e.Text, 0) && textBox.Text.Length >= 0) &&//integer
+                !(e.Text == dot && !textBox.Text.Contains(dot) && Regex.IsMatch(textBox.Text, numberPattern))//float
+                )
             {
                 e.Handled = true;
                 if (textBox.Text == "")
@@ -109,10 +113,11 @@ namespace OxygenBalanceDesktop
                 }
                 catch
                 {
-                    ShowLabel.Content = "Can't create element \"" + NameCur + "\"";
+                    ShowLabel.Content = Resources["FailedToCreateElement"] + "\"" + NameCur + "\"";
                     AddButton.IsEnabled = false;
                 }
             }
+
         }
 
         //get formula and show new element in label
@@ -130,7 +135,7 @@ namespace OxygenBalanceDesktop
             }
             catch
             {
-                ShowLabel.Content = "Can't create element \"" + NameCur + "\"";
+                ShowLabel.Content = Resources["FailedToCreateElement"] + "\"" + NameCur + "\"";
                 AddButton.IsEnabled = false;
             }
         }
@@ -141,7 +146,7 @@ namespace OxygenBalanceDesktop
         {
             if (Explosives.ChemicalSubstances.Select(c => c.Name).Contains(NameCur))
             {
-                MessageBox.Show("Element \"" + NameCur + "\" already exists");
+                MessageBox.Show(Resources["RemoveMessageStart"] + "\"" + NameCur + "\"" + Resources["AlreadyExists"]);
                 return;
             }
             else
@@ -153,17 +158,10 @@ namespace OxygenBalanceDesktop
                 else
                 {
                     Explosives.AddElementFormula(((MainWindow)this.Owner).Culture, NameCur, FormulaCur);
-                }                
-                MessageBox.Show("Element \"" + NameCur + "\" has been successfully added");
-                Explosives.CreateList(((MainWindow)this.Owner).Culture);
+                }
                 ((MainWindow)this.Owner).InitializeLists();
+                MessageBox.Show(Resources["RemoveMessageStart"] + "\"" + NameCur + "\"" + Resources["SuccessfulyAdded"]);
             }
-        }
-
-        private void AddWindowClosing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            Explosives.CreateList(((MainWindow)this.Owner).Culture);
-            ((MainWindow)this.Owner).InitializeLists();
         }
     }
 }
