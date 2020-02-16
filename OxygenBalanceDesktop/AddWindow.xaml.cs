@@ -11,6 +11,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using PeriodicTable;
 using System.Linq;
+using System.IO;
 
 namespace OxygenBalanceDesktop
 {
@@ -28,6 +29,8 @@ namespace OxygenBalanceDesktop
         //string value to store name
         private string NameCur;
 
+        private bool IsAddRequired;
+
         public AddWindow()
         {
             InitializeComponent();
@@ -41,6 +44,7 @@ namespace OxygenBalanceDesktop
             FormulaCur = null;
             //result button is disabled until we get out new element properly
             AddButton.IsEnabled = false;
+            IsAddRequired = false;
             
         }
 
@@ -135,7 +139,7 @@ namespace OxygenBalanceDesktop
             }
             catch
             {
-                ShowLabel.Content = Resources["FailedToCreateElement"] + "\"" + NameCur + "\"";
+                ShowLabel.Content = Resources["FailedToCreateElement"] + "\"" + NameCur + "\".";
                 AddButton.IsEnabled = false;
             }
         }
@@ -146,7 +150,7 @@ namespace OxygenBalanceDesktop
         {
             if (Explosives.ChemicalSubstances.Select(c => c.Name).Contains(NameCur))
             {
-                MessageBox.Show(Resources["RemoveMessageStart"] + "\"" + NameCur + "\"" + Resources["AlreadyExists"]);
+                MessageBox.Show(Resources["RemoveMessageStart"] + NameCur + "\" " + Resources["AlreadyExists"]);
                 return;
             }
             else
@@ -160,8 +164,15 @@ namespace OxygenBalanceDesktop
                     Explosives.AddElementFormula(((MainWindow)this.Owner).Culture, NameCur, FormulaCur);
                 }
                 ((MainWindow)this.Owner).InitializeLists();
-                MessageBox.Show(Resources["RemoveMessageStart"] + "\"" + NameCur + "\"" + Resources["SuccessfulyAdded"]);
+                MessageBox.Show(Resources["RemoveMessageStart"] + NameCur + "\" " + Resources["SuccessfulyAdded"]);
+                IsAddRequired = true;
             }
+        }
+
+        private void AddWindowClosing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            //if (IsAddRequired)
+            //    Explosives.AddLine(((MainWindow)this.Owner).Culture);
         }
     }
 }
