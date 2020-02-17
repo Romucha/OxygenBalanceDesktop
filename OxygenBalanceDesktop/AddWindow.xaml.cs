@@ -168,11 +168,5 @@ namespace OxygenBalanceDesktop
                 IsAddRequired = true;
             }
         }
-
-        private void AddWindowClosing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            //if (IsAddRequired)
-            //    Explosives.AddLine(((MainWindow)this.Owner).Culture);
-        }
     }
 }
