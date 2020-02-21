@@ -24,3 +24,9 @@ C:\Users\Roman\source\repos\OxygenBalanceDesktop\OxygenBalanceDesktop\obj\Releas
 C:\Users\Roman\source\repos\OxygenBalanceDesktop\OxygenBalanceDesktop\obj\Release\netcoreapp3.1\OxygenBalanceDesktop.csproj.CopyComplete
 C:\Users\Roman\source\repos\OxygenBalanceDesktop\OxygenBalanceDesktop\obj\Release\netcoreapp3.1\OxygenBalanceDesktop.dll
 C:\Users\Roman\source\repos\OxygenBalanceDesktop\OxygenBalanceDesktop\obj\Release\netcoreapp3.1\OxygenBalanceDesktop.pdb
+C:\Users\Roman\source\repos\OxygenBalanceDesktop\OxygenBalanceDesktop\obj\Release\netcoreapp3.1\AddWindow.g.cs
+C:\Users\Roman\source\repos\OxygenBalanceDesktop\OxygenBalanceDesktop\obj\Release\netcoreapp3.1\RemoveWindow.g.cs
+C:\Users\Roman\source\repos\OxygenBalanceDesktop\OxygenBalanceDesktop\obj\Release\netcoreapp3.1\AddWindow.baml
+C:\Users\Roman\source\repos\OxygenBalanceDesktop\OxygenBalanceDesktop\obj\Release\netcoreapp3.1\RemoveWindow.baml
+C:\Users\Roman\source\repos\OxygenBalanceDesktop\OxygenBalanceDesktop\obj\Release\netcoreapp3.1\Resources\LocalDictionary.en-US.baml
+C:\Users\Roman\source\repos\OxygenBalanceDesktop\OxygenBalanceDesktop\obj\Release\netcoreapp3.1\Resources\LocalDictionary.ru-RU.baml

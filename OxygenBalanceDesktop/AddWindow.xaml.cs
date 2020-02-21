@@ -161,7 +161,7 @@ namespace OxygenBalanceDesktop
                 }
                 else
                 {
-                    Explosives.AddElementFormula(((MainWindow)this.Owner).Culture, NameCur, FormulaCur);
+                    Explosives.AddElementFormula(NameCur, FormulaCur);
                 }
                 ((MainWindow)this.Owner).InitializeLists();
                 MessageBox.Show(Resources["RemoveMessageStart"] + NameCur + "\" " + Resources["SuccessfulyAdded"]);

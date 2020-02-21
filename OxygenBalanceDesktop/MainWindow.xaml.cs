@@ -260,14 +260,15 @@ namespace OxygenBalanceDesktop
         //initialize all three comboboxes of explosives at the beginning and when language is switched
         public void InitializeLists()
         {
-            FuelList = new ObservableCollection<string>(Explosives.ChemicalSubstances.Where(c => c.Balance < 0.0).Select(c => c.Name));
+            FuelList = new ObservableCollection<string>(Explosives.ChemicalSubstances.Where(c => c.Balance < 0.0).Select(c => c.Name).OrderBy(i => i));
             Fuel.ItemsSource = FuelList;
-            OxidizerList = new ObservableCollection<string>(Explosives.ChemicalSubstances.Where(c => c.Balance > 0.0).Select(c => c.Name));
+            OxidizerList = new ObservableCollection<string>(Explosives.ChemicalSubstances.Where(c => c.Balance > 0.0).Select(c => c.Name).OrderBy(i => i));
             Oxidizer.ItemsSource = OxidizerList;
-            ThirdList = new List<string>(Explosives.ChemicalSubstances.Select(c => c.Name));
+            ThirdList = new List<string>(Explosives.ChemicalSubstances.Select(c => c.Name).OrderBy(i => i));
             ThirdOne.ItemsSource = ThirdList;
         }
 
+        //open add element window
         private void AddClick(object sender, RoutedEventArgs e)
         {
             AddWindow addWindow = new AddWindow();
@@ -285,9 +286,10 @@ namespace OxygenBalanceDesktop
             removeWindow.ShowDialog();
         }
 
+        //restore lists to their initial form
         private void RestoreClick(object sender, RoutedEventArgs e)
         {
-            Explosives.RestoreTable(Culture);
+            Explosives.RestoreTable();
             InitializeLists();
         }
     }

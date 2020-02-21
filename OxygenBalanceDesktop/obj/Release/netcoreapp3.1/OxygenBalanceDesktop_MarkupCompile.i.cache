@@ -10,11 +10,11 @@ none
 false
 TRACE;RELEASE;NETCOREAPP;NETCOREAPP3_1
 C:\Users\Roman\source\repos\OxygenBalanceDesktop\OxygenBalanceDesktop\App.xaml
-4-1556237032
+8-31395218
 
-61564690304
+81460028952
 193-1225468690
-AboutWindow.xaml;MainWindow.xaml;OxygenStyles.xaml;ResultWindow.xaml;
+AboutWindow.xaml;AddWindow.xaml;MainWindow.xaml;OxygenStyles.xaml;RemoveWindow.xaml;Resources\LocalDictionary.en-US.xaml;Resources\LocalDictionary.ru-RU.xaml;ResultWindow.xaml;
 
 False
 

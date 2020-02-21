@@ -47,7 +47,7 @@ namespace OxygenBalanceDesktop
         //remove element from file and lists
         private void RemoveClick(object sender, RoutedEventArgs e)
         {
-            Explosives.RemoveElement(((MainWindow)this.Owner).Culture, RemoveElementName);
+            Explosives.RemoveElement(RemoveElementName);
             RemoveList.SelectedItem = null;
             RemoveList.ItemsSource = new ObservableCollection<string>(Explosives.ChemicalSubstances.Select(c => c.Name));
             RemoveLabel.Content = null;

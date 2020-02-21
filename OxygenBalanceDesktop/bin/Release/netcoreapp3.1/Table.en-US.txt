@@ -85,4 +85,3 @@ Trinitroresorcinol	C6H(NO2)3(OH)2
 Trinitrotoluene	C6H2(NO2)3CH3
 Coal	C
 Phenol	C6H5OH
-Ftor	-1.3
